@@ -42,7 +42,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 #Support Placements primary key scheme
-gem 'composite_primary_keys', :group => :development
+gem 'composite_primary_keys'
 
 gem 'figaro'
 

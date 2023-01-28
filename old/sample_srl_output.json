@@ -1,0 +1,42 @@
+{
+    "data": {
+        "raceId": 259299,
+        "raceGoal": "beat mission 10",
+        "raceDate": 1567260143,
+        "seasonId": 0,
+        "game": {
+            "gameName": "Buck Bumble",
+            "gameAbbrev": "bb",
+            "gamePopularity": 2.000000,
+            "isSeasonGame": false
+        },
+        "entrants": [
+            {
+                "playerName": "tapioca2000",
+                "place": 1,
+                "placeText": "",
+                "time": 4510,
+                "message": "right about now it's time to throw this game in the garbage",
+                "oldRating": 0.0,
+                "newRating": 396.0
+            },
+            {
+                "playerName": "sg4e",
+                "place": 9998,
+                "placeText": "Forfeit",
+                "time": -1,
+                "message": "never forget Buck Bumble, who sacrificed himself in a nuclear explosion to save his village o7",
+                "oldRating": 0.0,
+                "newRating": 181.0
+            },
+            {
+                "playerName": "Sp0ck1",
+                "place": 9998,
+                "placeText": "Forfeit",
+                "time": -1,
+                "oldRating": 0.0,
+                "newRating": 181.0
+            }
+        ]
+    }
+}

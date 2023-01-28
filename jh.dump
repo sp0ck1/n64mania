@@ -1,0 +1,1005 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.12 (Ubuntu 12.12-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.12 (Ubuntu 12.12-0ubuntu0.20.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: cory
+--
+
+CREATE TABLE public.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.ar_internal_metadata OWNER TO cory;
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: cory
+--
+
+CREATE TABLE public.comments (
+    id smallint NOT NULL,
+    player_id smallint NOT NULL,
+    race_id smallint NOT NULL,
+    comment_text text
+);
+
+
+ALTER TABLE public.comments OWNER TO cory;
+
+--
+-- Name: comment_id_seq; Type: SEQUENCE; Schema: public; Owner: cory
+--
+
+CREATE SEQUENCE public.comment_id_seq
+    AS smallint
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.comment_id_seq OWNER TO cory;
+
+--
+-- Name: comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: cory
+--
+
+ALTER SEQUENCE public.comment_id_seq OWNED BY public.comments.id;
+
+
+--
+-- Name: games; Type: TABLE; Schema: public; Owner: cory
+--
+
+CREATE TABLE public.games (
+    id smallint NOT NULL,
+    name text NOT NULL,
+    release_year smallint,
+    publisher text,
+    developer text,
+    genre text,
+    description character varying
+);
+
+
+ALTER TABLE public.games OWNER TO cory;
+
+--
+-- Name: glossaries; Type: TABLE; Schema: public; Owner: cory
+--
+
+CREATE TABLE public.glossaries (
+    id bigint NOT NULL,
+    name character varying,
+    definition character varying,
+    author character varying
+);
+
+
+ALTER TABLE public.glossaries OWNER TO cory;
+
+--
+-- Name: glossaries_id_seq; Type: SEQUENCE; Schema: public; Owner: cory
+--
+
+CREATE SEQUENCE public.glossaries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.glossaries_id_seq OWNER TO cory;
+
+--
+-- Name: glossaries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: cory
+--
+
+ALTER SEQUENCE public.glossaries_id_seq OWNED BY public.glossaries.id;
+
+
+--
+-- Name: placements; Type: TABLE; Schema: public; Owner: cory
+--
+
+CREATE TABLE public.placements (
+    race_id smallint NOT NULL,
+    player_id smallint NOT NULL,
+    placement smallint NOT NULL,
+    "time" integer
+);
+
+
+ALTER TABLE public.placements OWNER TO cory;
+
+--
+-- Name: players; Type: TABLE; Schema: public; Owner: cory
+--
+
+CREATE TABLE public.players (
+    id smallint NOT NULL,
+    name text NOT NULL,
+    stream text
+);
+
+
+ALTER TABLE public.players OWNER TO cory;
+
+--
+-- Name: player_id_seq; Type: SEQUENCE; Schema: public; Owner: cory
+--
+
+CREATE SEQUENCE public.player_id_seq
+    AS smallint
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.player_id_seq OWNER TO cory;
+
+--
+-- Name: player_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: cory
+--
+
+ALTER SEQUENCE public.player_id_seq OWNED BY public.players.id;
+
+
+--
+-- Name: races; Type: TABLE; Schema: public; Owner: cory
+--
+
+CREATE TABLE public.races (
+    id smallint NOT NULL,
+    date date,
+    game_id smallint NOT NULL,
+    url text,
+    description character varying
+);
+
+
+ALTER TABLE public.races OWNER TO cory;
+
+--
+-- Name: race_id_seq; Type: SEQUENCE; Schema: public; Owner: cory
+--
+
+CREATE SEQUENCE public.race_id_seq
+    AS smallint
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.race_id_seq OWNER TO cory;
+
+--
+-- Name: race_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: cory
+--
+
+ALTER SEQUENCE public.race_id_seq OWNED BY public.races.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: cory
+--
+
+CREATE TABLE public.schema_migrations (
+    version character varying NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO cory;
+
+--
+-- Name: terms; Type: TABLE; Schema: public; Owner: cory
+--
+
+CREATE TABLE public.terms (
+    id bigint NOT NULL,
+    name character varying,
+    definition character varying,
+    author character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.terms OWNER TO cory;
+
+--
+-- Name: terms_id_seq; Type: SEQUENCE; Schema: public; Owner: cory
+--
+
+CREATE SEQUENCE public.terms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.terms_id_seq OWNER TO cory;
+
+--
+-- Name: terms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: cory
+--
+
+ALTER SEQUENCE public.terms_id_seq OWNED BY public.terms.id;
+
+
+--
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comment_id_seq'::regclass);
+
+
+--
+-- Name: glossaries id; Type: DEFAULT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.glossaries ALTER COLUMN id SET DEFAULT nextval('public.glossaries_id_seq'::regclass);
+
+
+--
+-- Name: players id; Type: DEFAULT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.players ALTER COLUMN id SET DEFAULT nextval('public.player_id_seq'::regclass);
+
+
+--
+-- Name: races id; Type: DEFAULT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.races ALTER COLUMN id SET DEFAULT nextval('public.race_id_seq'::regclass);
+
+
+--
+-- Name: terms id; Type: DEFAULT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.terms ALTER COLUMN id SET DEFAULT nextval('public.terms_id_seq'::regclass);
+
+
+--
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: cory
+--
+
+COPY public.ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
+environment	development	2022-12-27 07:57:17.826591	2022-12-27 07:57:17.826591
+\.
+
+
+--
+-- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: cory
+--
+
+COPY public.comments (id, player_id, race_id, comment_text) FROM stdin;
+\.
+
+
+--
+-- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: cory
+--
+
+COPY public.games (id, name, release_year, publisher, developer, genre, description) FROM stdin;
+304	Sin & Punishment	2000	Nintendo	Treasure	Action | 3D Rail Shooter	\N
+2	Aero Fighters Assault	1997	Video System	Paradigm Entertainment	Simulation | Flight Combat	\N
+3	AeroGauge	1997	ASCII Entertainment	Pacific Coast Power & Light	Racing | Automobile	\N
+4	Aidyn Chronicles: The First Mage	2001	THQ	H2O Interactive	Adventure | Role Playing	\N
+6	All-Star Baseball 99	1998	Acclaim Sports	Iguana Entertainment	Sports | Baseball	\N
+7	All-Star Baseball 2000	1999	Acclaim Sports	Iguana Entertainment	Sports | Baseball	\N
+8	All-Star Baseball 2001	2000	Acclaim Sports	High Voltage Software	Sports | Baseball	\N
+9	All Star Tennis '99	1999	Ubisoft	Smart Dog	Sports | Tennis	\N
+10	Armorines: Project S.W.A.R.M.	1999	Acclaim Entertainment	Acclaim Studios London	Action | First-Person Shooter	\N
+11	Army Men: Air Combat	2000	The 3DO Company	The 3DO Company	Action | Adventure | 3D Shooter	\N
+12	Army Men: Sarge's Heroes	1999	The 3DO Company	The 3DO Company	Action | Adventure | 3D Shooter	\N
+13	Army Men: Sarge's Heroes 2	2000	The 3DO Company	The 3DO Company	Action | Adventure | 3D Shooter	\N
+14	Asteroids Hyper 64	1999	Crave Entertainment	Syrox Developments	Arcade | Action | Shooter	\N
+15	Automobili Lamborghini	1997	Titus SoftwareTaito	Titus Software	Racing | Automobile	\N
+16	Banjo-Kazooie	1998	Nintendo	Rare	Adventure | 3D Platformer	\N
+17	Banjo-Tooie	2000	Nintendo	Rare	Adventure | 3D Platformer	\N
+18	Bass Hunter 64	1999	Take-Two Interactive	Gear Head Entertainment	Sports | Fishing	\N
+19	Bass Masters 2000	1999	THQ	Mass Media	Sports | Fishing	\N
+20	Batman Beyond: Return of the Joker	2000	Ubisoft	Kemco	Action | Adventure	\N
+21	BattleTanx	1998	The 3DO Company	The 3DO Company	Simulation | Tank Combat	\N
+22	BattleTanx: Global Assault	1999	The 3DO Company	The 3DO Company	Simulation | Tank Combat	\N
+23	Battlezone: Rise of the Black Dogs	2000	Crave Entertainment	Climax Group	Simulation | Tank Combat	\N
+24	Beetle Adventure Racing!	1999	Electronic Arts	Paradigm Entertainment	Racing | Automobile | Adventure	\N
+25	Big Mountain 2000	1998	SouthPeak Games	Eutechnyx	Racing	\N
+26	Bio F.R.E.A.K.S.	1998	Midway	Saffire Corporation	Arcade | Fighting	\N
+27	Blast Corps	1997	Nintendo	Rare	Strategy | Demolition	\N
+28	Blues Brothers 2000	2000	Titus Software	Player 1	Adventure | 3D Platformer	\N
+29	Body Harvest	1998	Midway	DMA Design	Action | Adventure | 3D shooter	\N
+30	Bomberman 64	1997	Nintendo	Hudson Soft	Adventure | Puzzle	\N
+31	Bomberman 64: The Second Attack	1999	Vatical Entertainment	Hudson Soft	Action | Adventure	\N
+32	Bomberman Hero	1998	Nintendo	Hudson Soft	Action | Adventure | 3D Platformer	\N
+33	Bottom of the 9th	1999	Konami	Konami	Sports | Baseball	\N
+34	Brunswick Circuit Pro Bowling	1999	THQ	Point of View	Sports | Bowling	\N
+35	Buck Bumble	1998	Ubi Soft	Argonaut Software	Action | Adventure | Shooter	\N
+36	A Bug's Life	1999	Activision	Traveller's Tales	Adventure | 3D Platformer	\N
+37	Bust-A-Move '99	1999	Acclaim Entertainment	Distinctive Developments	Arcade | Action | Puzzle	\N
+38	Bust-A-Move 2: Arcade Edition	1998	Acclaim Entertainment	Probe Entertainment	Arcade | Action | Puzzle	\N
+39	California Speed	1999	Midway	Midway	Racing | Automobile	\N
+40	Carmageddon 64	2000	Titus Software (NA)Sales Curve Interactive (EU)	Software Creations	Racing | Battle	\N
+41	Castlevania	1999	Konami	Konami	Adventure | 3D Platformer	\N
+42	Castlevania: Legacy of Darkness	1999	Konami	Konami	Adventure | 3D Platformer	\N
+44	Chameleon Twist	1997	Sunsoft	Japan System Supply	Adventure | 3D Platformer	\N
+45	Chameleon Twist 2	1999	Sunsoft	Japan System Supply	Adventure | 3D Platformer	\N
+46	Charlie Blast's Territory	1999	Kemco	Realtime Associates	Strategy | Puzzle	\N
+47	Chopper Attack	1998	MidwaySETA	SETA	Simulation | Helicopter | Shooter	\N
+48	ClayFighter 63⅓	1997	Interplay Productions	Interplay Productions	Arcade | Fighting	\N
+49	ClayFighter Sculptor's Cut	1998	Interplay Productions	Interplay Productions	Arcade | Fighting	\N
+50	Command & Conquer	1999	Nintendo	Westwood Studios	Strategy | Real-time	\N
+51	Conker's Bad Fur Day	2001	Rare | THQ (EU)	Rare	Action | Adventure | 3D Platformer	\N
+52	Cruis'n Exotica	2000	Midway	Gratuitous Games	Racing | Automobile	\N
+53	Cruis'n USA	1996	Nintendo	Midway	Racing | Automobile	\N
+54	Cruis'n World	1998	Nintendo	Midway	Racing | Automobile	\N
+55	CyberTiger	2000	EA Games	Saffire Corporation	Sports | Golf	\N
+56	Daikatana	2000	Kemco	Kemco	Action | First-Person Shooter	\N
+57	Dark Rift	1997	Vic Tokai	Kronos Digital	Arcade | Fighting	\N
+58	Destruction Derby 64	1999	THQ	Looking Glass Studios	Racing | Battle	\N
+59	Diddy Kong Racing	1997	Rare	Rare	Racing | Adventure | Battle	\N
+60	Donald Duck: Goin' Quackers	2000	Ubi Soft	Ubi Soft Casablanca	Adventure | 3D Platformer	\N
+61	Disney's Tarzan	2000	Activision	Eurocom	Adventure | 3D Platformer	\N
+62	Donkey Kong 64	1999	Nintendo	Rare	Action | Adventure | 3D Platformer	\N
+63	Doom 64	1997	Midway	Midway	Action | First-Person Shooter	\N
+64	Dr. Mario 64	2001	Nintendo	Nintendo	Arcade | Action | Puzzle	\N
+65	Dual Heroes	1998	Hudson Soft | Electro Brain (NA)	Produce!	Arcade | Fighting	\N
+66	Duck Dodgers Starring Daffy Duck	2000	Infogrames	Paradigm Entertainment	Adventure | 3D Platformer	\N
+67	Duke Nukem 64	1997	GT Interactive Software	Eurocom	Action | First-Person Shooter	\N
+68	Duke Nukem: Zero Hour	1999	GT Interactive Software	Eurocom	Action | Adventure | 3D Shooter	\N
+69	Earthworm Jim 3D	1999	Rockstar Games (NA) | Interplay Entertainment (EU)	VIS Entertainment	Action | Adventure | 3D Platformer	\N
+70	ECW Hardcore Revolution	2000	Acclaim Entertainment	Acclaim Studios Salt Lake City	Sports | Wrestling	\N
+71	Elmo's Letter Adventure	1999	NewKidCo	Realtime Associates	Learning | Mini games	\N
+72	Elmo's Number Journey	1999	NewKidCo	Realtime Associates	Learning | Mini games	\N
+73	Excitebike 64	2000	Nintendo	Left Field Productions	Racing | Simulation | Motorcycle	\N
+74	Extreme-G	1997	Acclaim Entertainment	Probe Entertainment	Racing | Battle	\N
+75	Extreme-G 2	1998	Acclaim Entertainment	Probe Entertainment	Racing | Battle	\N
+76	F-1 World Grand Prix	1998	Nintendo	Paradigm Entertainment	Racing | Grand Prix	\N
+78	F-Zero X	1998	Nintendo	Nintendo	Racing | Battle	\N
+79	F1 Pole Position 64	1997	Ubi Soft	Human Entertainment	Racing | Grand Prix	\N
+80	F1 Racing Championship	2000	Ubi Soft	Ubi Soft	Racing | Grand Prix	\N
+81	FIFA '99	1998	EA Sports	EA Canada	Sports | Soccer	\N
+82	FIFA: Road to World Cup 98	1997	EA Sports	EA Canada	Sports | Soccer	\N
+83	FIFA Soccer 64	1997	EA Sports	EA Canada	Sports | Soccer	\N
+84	Fighters Destiny	1998	Ocean Software | Infogrames Multimedia	Imagineer	Arcade | Fighting	\N
+85	Fighter Destiny 2	2000	SouthPeak Games	Imagineer	Arcade | Fighting	\N
+86	Fighting Force 64	1999	Crave Entertainment	Core Design	Action | Adventure | Fighting	\N
+87	Flying Dragon	1998	Natsume	Culture Brain	Arcade | Fighting	\N
+88	Forsaken 64	1998	Acclaim Entertainment	Iguana UK	Action | Adventure | 3D Shooter	\N
+89	Fox Sports College Hoops '99	1998	Fox Sports Interactive	Z-Axis	Sports | Basketball	\N
+90	G.A.S.P!! Fighters' NEXTream	1998	Konami	Konami	Arcade | Fighting	\N
+91	Gauntlet Legends	1998	Midway	Midway	Action | Adventure | Hack and Slash	\N
+92	Gex 3: Deep Cover Gecko	1999	Crave Entertainment	Gratuitous Games	Adventure | 3D Platformer	\N
+93	Gex 64: Enter the Gecko	1998	Midway Games	Realtime Associates	Adventure | 3D Platformer	\N
+94	Glover	1998	Hasbro Interactive | Nintendo (EU)	Interactive Studios	Adventure | 3D Platformer	\N
+95	Goemon's Great Adventure	1998	Konami	Konami	Adventure | 2D Platformer	\N
+96	Golden Nugget 64	1998	Electronic Arts	Westwood Studios	Gambling | Casino	\N
+97	GoldenEye 007	1997	Nintendo	Rare	Action | First-Person Shooter	\N
+98	GT 64: Championship Edition	1998	Ocean Software | Infogrames Multimedia | Imagineer	Imagineer	Racing | Automobile	\N
+99	Harvest Moon 64	1999	Natsume	Toy Box Creative	Simulation | Role Playing | Farming	\N
+100	Hercules: The Legendary Journeys	2000	Titus Software	Player 1	Action | Adventure	\N
+101	Hexen	1997	GT Interactive Software	Software Creations	Action | First-Person Shooter	\N
+102	Hey You, Pikachu!	1998	Nintendo	Ambrella	Simulation | Life	\N
+103	Hot Wheels Turbo Racing	1999	Electronic Arts	Stormfront Studios	Racing | Stunt	\N
+104	Hybrid Heaven	1999	Konami	Konami	Action | Adventure	\N
+105	Hydro Thunder	2000	Midway	Eurocom	Racing | Speed boat	\N
+106	Iggy's Reckin' Balls	1998	Acclaim Entertainment	Iguana Entertainment	Racing | Battle	\N
+107	Indiana Jones and the Infernal Machine	2000	LucasArts	Factor 5	Adventure | Action | 3D Platformer	\N
+108	Indy Racing 2000	2000	Infogrames	Paradigm Entertainment	Racing | Automobile	\N
+109	International Superstar Soccer '98	1998	Konami	Konami	Sports | Soccer	\N
+110	International Superstar Soccer 2000	1999	Konami	Konami	Sports | Soccer	\N
+111	International Superstar Soccer 64	1996	Konami	Konami	Sports | Soccer	\N
+112	International Track & Field 2000	2000	Konami	Konami	Sports | Track and Field	\N
+113	Jeopardy!	1998	GameTek	GameTek	Game Show	\N
+114	Jeremy McGrath Supercross 2000	2000	Acclaim Sports	Acclaim Studios Salt Lake City	Racing | Motorcycle	\N
+115	Jet Force Gemini	1999	Rare	Rare	Action | Adventure	\N
+116	Ken Griffey, Jr.'s Slugfest	1999	Nintendo	Angel Studios	Sports | Baseball	\N
+117	Killer Instinct Gold	1996	Nintendo	Rare	Arcade | Fighting	\N
+118	Kirby 64: The Crystal Shards	2000	Nintendo	HAL Laboratory	Adventure | 2D Platformer	\N
+119	Knife Edge: Nose Gunner	1998	Kemco	Kemco	Action | 3D Rail Shooter	\N
+120	Knockout Kings 2000	1999	Electronic Arts	Black Ops Entertainment	Sports | Boxing	\N
+121	Kobe Bryant in NBA Courtside	1998	Nintendo	Left Field Productions	Sports | Basketball	\N
+122	The Legend of Zelda: Majora's Mask	2000	Nintendo	Nintendo	Action | Adventure	\N
+123	The Legend of Zelda: Ocarina of Time	1998	Nintendo	Nintendo	Action | Adventure	\N
+124	LEGO Racers	1999	Lego Media	High Voltage Software	Racing | Battle	\N
+125	Lode Runner 3-D	1999	Infogrames	Big Bang	Adventure | Strategy | Puzzle	\N
+126	Mace: The Dark Age	1997	Midway	Midway	Arcade |  3D Fighting	\N
+127	Madden Football 64	1997	Electronic Arts	Electronic Arts	Sports | American Football	\N
+128	Madden NFL 99	1998	Electronic Arts	Electronic Arts	Sports | American Football	\N
+129	Madden NFL 2000	1999	Electronic Arts	Electronic Arts	Sports | American Football	\N
+130	Madden NFL 2001	2000	Electronic Arts	Electronic Arts	Sports | American Football	\N
+131	Madden NFL 2002	2001	Electronic Arts	Electronic Arts	Sports | Rugby | American Football	\N
+132	Magical Tetris Challenge	1999	Capcom | Activision (EU)	Capcom	Arcade | Action | Puzzle	\N
+133	Major League Baseball Featuring Ken Griffey, Jr.	1998	Nintendo	Angel Studios	Sports | Baseball	\N
+134	Mario Golf	1999	Nintendo	Camelot	Sports | Golf	\N
+135	Mario Kart 64	1996	Nintendo	Nintendo	Racing | Battle	\N
+136	Mario Party	1998	Nintendo	Hudson Soft	Board Games	\N
+137	Mario Party 2	1999	Nintendo	Hudson Soft	Board Games	\N
+138	Mario Party 3	2000	Nintendo	Hudson Soft	Board Games	\N
+139	Mario Tennis	2000	Nintendo	Camelot	Sports | Tennis	\N
+140	Mega Man 64	2000	Capcom	Capcom	Action | Adventure	\N
+141	Michael Owen's WLS 2000	2000	THQSouthPeak Games	Silicon Dreams Studio	Sports | Soccer	\N
+142	Mickey's Speedway USA	2000	Nintendo	Rare	Racing | Battle	\N
+143	Micro Machines 64 Turbo	1999	Midway	Codemasters	Racing | Battle	\N
+144	Midway's Greatest Arcade Hits: Volume 1	2000	Midway	Digital Eclipse	Arcade | Compilation	\N
+145	Mike Piazza's Strike Zone	1998	GT Interactive	Devil's Thumb Entertainment	Sports | Baseball	\N
+146	Milo's Astro Lanes	1998	Crave Entertainment	Player 1	Sports | Bowling	\N
+147	Mischief Makers	1997	Nintendo	Treasure	Action | Adventure | 2D Platformer	\N
+148	Mission: Impossible	1998	Ocean Software | Infogrames Multimedia	Infogrames Multimedia	Action | Adventure	\N
+149	Monaco Grand Prix	1999	Ubisoft	Ubisoft	Racing | Automobile	\N
+150	Monopoly	1999	Hasbro Interactive	Mind's Eye Productions	Board Games	\N
+151	Monster Truck Madness 64	1999	Rockstar Games	Edge of Reality	Racing | Automobile | Off Road	\N
+152	Mortal Kombat 4	1998	Midway	Eurocom	Arcade | Fighting	\N
+153	Mortal Kombat Mythologies: Sub-Zero	1997	Midway	Avalanche Software	Action | Adventure | 2D Fighting	\N
+154	Mortal Kombat Trilogy	1996	Midway	Midway	Arcade | Fighting	\N
+155	MRC: Multi-Racing Championship	1997	Ocean Software | Infogrames Multimedia	Genki	Racing | Automobile	\N
+156	Ms. Pac-Man Maze Madness	2000	Namco	Mass Media	Arcade | Adventure | Maze	\N
+157	Mystical Ninja Starring Goemon	1997	Konami	Konami	Action | Adventure	\N
+158	Nagano Winter Olympics '98	1997	Konami	Konami	Sports | Winter Sports	\N
+159	Namco Museum 64	1999	Namco	Mass Media	Arcade | Compilation	\N
+160	NASCAR 99	1998	Electronic Arts	Stormfront Studios	Simulation | Racing | Automobile	\N
+161	NASCAR 2000	1999	Electronic Arts	Stormfront Studios	Simulation | Racing | Automobile	\N
+162	NBA Courtside 2: Featuring Kobe Bryant	1999	Nintendo	Left Field Productions	Sports | Basketball	\N
+163	NBA Hangtime	1997	Midway	Midway	Sports | Basketball	\N
+164	NBA In The Zone '98	1998	Konami	Konami	Sports | Basketball	\N
+165	NBA In The Zone '99	1999	Konami	Konami	Sports | Basketball	\N
+166	NBA In The Zone 2000	2000	Konami	Konami	Sports | Basketball	\N
+167	NBA Jam '99	1998	Acclaim Sports	Iguana Entertainment	Sports | Basketball	\N
+168	NBA Jam 2000	1999	Acclaim Sports	Iguana Entertainment	Sports | Basketball	\N
+169	NBA Live 99	1998	Electronic Arts	NuFX	Sports | Basketball	\N
+170	NBA Live 2000	1999	Electronic Arts	NuFX	Sports | Basketball	\N
+171	NBA Showtime: NBA on NBC	1999	Midway	Eurocom	Sports | Basketball	\N
+172	The New Tetris	1999	Nintendo	H2O Entertainment	Arcade | Action | Puzzle	\N
+173	NFL Blitz	1998	Midway	Midway	Sports | American Football	\N
+174	NFL Blitz 2000	1999	Midway	Midway	Sports | American Football	\N
+175	NFL Blitz 2001	2000	Midway	Point of View	Sports | American Football	\N
+176	NFL Blitz Special Edition	2001	Midway	Point of View	Sports | American Football	\N
+177	NFL Quarterback Club '98	1997	Acclaim Sports	Iguana Entertainment	Sports | American Football	\N
+178	NFL Quarterback Club '99	1998	Acclaim Sports	Iguana Entertainment	Sports | American Football	\N
+179	NFL Quarterback Club 2000	1999	Acclaim Sports	Iguana Entertainment	Sports | American Football	\N
+180	NFL QB Club 2001	2000	Acclaim	High Voltage Software	Sports | American Football	\N
+181	NHL 99	1998	Electronic Arts	MBL Research	Sports | Ice Hockey	\N
+182	NHL Blades of Steel '99	1999	Konami	Konami	Sports | Ice Hockey	\N
+183	NHL Breakaway '98	1998	Acclaim Sports	Iguana Entertainment	Sports | Ice Hockey	\N
+184	NHL Breakaway '99	1998	Acclaim Sports	Iguana Entertainment	Sports | Ice Hockey	\N
+185	Nightmare Creatures	1998	Activision	Kallisto Technologies	Action | Adventure	\N
+186	Nuclear Strike 64	1999	THQ	Pacific Coast Power & Light	Simulation | Flight | 3-D Shooter	\N
+187	Off Road Challenge	1998	Midway	Avalanche Software	Racing | Automobile | Off Road	\N
+188	Ogre Battle 64: Person of Lordly Caliber	1999	Atlus	Quest	Role Playing | Strategy	\N
+189	Olympic Hockey Nagano '98	1998	Midway	Treyarch	Sports | Ice Hockey	\N
+190	Paper Mario	2000	Nintendo	Intelligent Systems	Role Playing | Adventure	\N
+191	Paperboy 64	1999	Midway	High Voltage Software	Arcade | Action	\N
+192	Penny Racers	1999	THQ	Takara	Racing | Automobile	\N
+193	Perfect Dark	2000	Rare	Rare	Action | First-Person Shooter	\N
+194	PGA European Tour	2000	Infogrames	Infogrames Sheffield House	Sports | Golf	\N
+195	Pilotwings 64	1996	Nintendo	Paradigm Entertainment / Nintendo	Simulation | Flight	\N
+196	Pokémon Puzzle League	2000	Nintendo	Nintendo Software Technology	Arcade | Action | Puzzle	\N
+197	Pokémon Snap	1999	Nintendo	HAL Laboratory	Shooter | Rail | Photography	\N
+198	Pokémon Stadium	1999	Nintendo	Nintendo	Battle | Strategy | Training	\N
+199	Pokémon Stadium 2	2000	Nintendo	Nintendo	Battle | Strategy | Training	\N
+200	Polaris SnoCross	2000	Vatical Entertainment	Vicarious Visions	Simulation | Snowmobile Racing	\N
+201	Power Rangers Lightspeed Rescue	2000	THQ	Mass Media	Action | Adventure	\N
+202	PowerpThe Powerpuff Girls: Chemical X-traction	2001	BAM! Entertainment	VIS Interactive	Arcade | Fighting	\N
+204	Quake 64	1998	Midway	Midway	Action | First-Person Shooter	\N
+205	Quake II	1999	Activision	Raster Productions	Action | First-Person Shooter	\N
+206	Quest 64	1998	ImagineerTHQKonami	Imagineer	Adventure | Role Playing	\N
+207	Rainbow Six	1999	Red Storm Entertainment	Saffire Corporation	Action | First-Person Shooter	\N
+209	Rally Challenge 2000	1999	Imagineer | SouthPeak Games	Genki	Racing | Off Road	\N
+210	Rampage 2: Universal Tour	1999	Midway	Avalanche Software	Arcade | Action | Side scrolling	\N
+211	Rampage World Tour	1998	Midway	Saffire Corporation	Arcade | Action | Side scrolling	\N
+212	Rat Attack!	2000	Mindscape	Pure Entertainment	Arcade | Action | Puzzle	\N
+213	Rayman 2: The Great Escape	1999	Ubi Soft	Ubi Soft	Adventure | 3D Platformer	\N
+214	Razor Freestyle Scooter	2001	Crave Entertainment	Titanium Studios	Sports | Stunts | Scooter	\N
+215	Re-Volt	1999	Acclaim Entertainment	Acclaim Studios London	Remote Control Racing	\N
+216	Ready 2 Rumble Boxing	1999	Midway	Point of View	Sports | Boxing	\N
+217	Ready 2 Rumble Boxing: Round 2	2000	Midway	Point of View	Sports | Boxing	\N
+218	Resident Evil 2	1999	Capcom | Virgin Interactive (EU) | Nintendo Australia (AU)	Angel Studios	Action | Adventure | 3D shooter	\N
+219	Ridge Racer 64	2000	Nintendo	Nintendo Software Technology	Racing | Automobile	\N
+220	Road Rash 64	1999	THQ	Pacific Coast Power & Light	Racing | Battle	\N
+221	Roadsters	1999	Titus Software	Titus Software	Racing | Automobile	\N
+222	Robotron 64	1998	Crave Entertainment	Player 1	Arcade | Action |  3D Shooter	\N
+223	Rocket: Robot on Wheels	1999	Ubisoft	Sucker Punch	Adventure | 3D Platformer	\N
+224	Rugrats in Paris: The Movie	2000	THQ	Avalanche Software	Adventure | 3D Platformer	\N
+225	Rugrats: Scavenger Hunt	1999	THQ	Realtime Associates	Board Game	\N
+226	Rush 2: Extreme Racing USA	1998	Midway	Midway	Racing | Automobile	\N
+227	S.C.A.R.S.	1999	Ubi Soft	Vivid Image	Racing | Battle	\N
+228	San Francisco Rush: Extreme Racing	1997	Midway	Midway	Racing | Automobile	\N
+229	San Francisco Rush 2049	2000	Midway	Midway	Racing | Automobile	\N
+230	Scooby-Doo! Classic Creep Capers	2000	THQ	Terraglyph Interactive Studios	Adventure	\N
+231	Shadow Man	1999	Acclaim Entertainment	Acclaim Studios Teesside	Action | Adventure | 3D Shooter	\N
+232	Shadowgate 64: Trials of the Four Towers	1999	Kemco	Infinite Ventures	Role Playing | Puzzle	\N
+233	Snowboard Kids	1997	Atlus	Racdym	Sports | Snowboarding	\N
+234	Snowboard Kids 2	1999	Atlus	Racdym	Sports | Snowboarding	\N
+235	South Park	1998	Acclaim Entertainment	Iguana Entertainment	Adventure | First-Person Shooter	\N
+236	South Park Rally	2000	Acclaim Entertainment	Tantalus Interactive	Racing | Battle	\N
+237	South Park: Chef's Luv Shack	1999	Acclaim Entertainment	Acclaim Studios Austin	Game Show	\N
+238	Space Invaders	1999	Activision	Z-Axis	Arcade | Action | 2D Shooter	\N
+239	Space Station Silicon Valley	1998	Take-Two Interactive	DMA Design	Adventure | Puzzle | 3D Platformer	\N
+240	Spider-Man	2000	Activision	Edge of Reality	Adventure | Action | 3D Platformer	\N
+241	Star Fox 64	1997	Nintendo	Nintendo	Action | Flight | 3D Rail Shooter	\N
+242	Star Soldier: Vanishing Earth	1998	Hudson Soft	Hudson Soft	Action | 2D Shooter	\N
+243	Star Wars: Episode I: Battle for Naboo	2000	LucasArts	Factor 5	Action | 3D Shooter	\N
+244	Star Wars Episode I: Racer	1999	Nintendo	LucasArts	Racing | Hovercraft	\N
+245	Star Wars: Rogue Squadron	1998	Nintendo	Factor 5	Action | 3D Shooter	\N
+246	Star Wars: Shadows of the Empire	1996	Nintendo	LucasArts	Action | Adventure | 3D Shooter	\N
+247	StarCraft 64	2000	Nintendo	Mass Media	Strategy | Real-Time	\N
+248	Starshot: Space Circus Fever	1999	Infogrames	Infogrames	Action | Adventure | 3D Platformer	\N
+249	Stunt Racer 64	2000	Midway	Boss Game Studios	Racing | Automobile | Stunt	\N
+250	Super Bowling	2000	UFO Interactive Games	Athena	Sports | Bowling	\N
+251	Super Mario 64	1996	Nintendo	Nintendo	Action | Adventure | 3D Platformer	\N
+252	Super Smash Bros.	1999	Nintendo	HAL Laboratory	Arcade | Fighting	\N
+253	Supercross 2000	1999	Electronic Arts	MBL Research	Racing | Motorcycle	\N
+254	Superman	1999	Titus Software	Titus Software	Action | Adventure | 3D Platformer	\N
+256	Tetrisphere	1997	Nintendo	H2O Entertainment	Arcade | Action | Puzzle	\N
+257	Tigger's Honey Hunt	2000	NewKidCo | Ubi Soft (EU)	Doki Denki Studio	Adventure | 2D Platformer	\N
+258	Tom and Jerry in Fists of Furry	2000	NewKidCo | Ubi Soft (EU)	VIS Interactive	Arcade | Fighting	\N
+259	Tonic Trouble	1999	Ubisoft	Ubisoft	Action | Adventure | 3D Platformer	\N
+260	Tony Hawk's Pro Skater	2000	Activision	Edge of Reality	Sports | Skateboarding	\N
+261	Tony Hawk's Pro Skater 2	2001	Activision	Edge of Reality	Sports | Skateboarding	\N
+262	Tony Hawk's Pro Skater 3	2002	Activision	Edge of Reality	Sports | Skateboarding	\N
+263	Top Gear Hyper Bike	2000	Kemco	Snowblind Studios	Racing | Motorcycle	\N
+264	Top Gear Overdrive	1998	Kemco	Snowblind Studios	Racing | Automobile	\N
+265	Top Gear Rally	1997	Midway	Boss Game Studios	Racing | Automobile | Rally	\N
+266	Top Gear Rally 2	1999	Kemco	Saffire Corporation	Racing | Automobile | Rally	\N
+267	Toy Story 2: Buzz Lightyear to the Rescue	1999	Activision	Traveller's Tales	Action | Adventure | 3D Platformer	\N
+268	Transformers: Beast Wars Transmetals	2000	BAM! Entertainment | Takara	Pacific Coast Power & Light	Arcade | Action | 3D Fighting	\N
+269	Triple Play 2000	1999	Electronic Arts	Treyarch	Sports | Baseball	\N
+270	Turok: Dinosaur Hunter	1997	Acclaim Entertainment	Iguana Entertainment	Action | First-Person Shooter	\N
+271	Turok 2: Seeds of Evil	1998	Acclaim Entertainment	Iguana Entertainment	Action | First-Person Shooter	\N
+272	Turok 3: Shadow of Oblivion	2000	Acclaim Entertainment	Acclaim Studios Austin	Action | First-Person Shooter	\N
+273	Turok: Rage Wars	1999	Acclaim Entertainment	Acclaim Studios Austin	Action | First-Person Shooter	\N
+274	Twisted Edge Extreme Snowboarding	1998	Midway	Boss Game Studios	Sports | Snowboarding	\N
+275	V-Rally Edition '99	1999	Infogrames	Eden Studios	Racing | Automobile	\N
+276	Vigilante 8	1999	Activision	Luxoflux	Racing | Destruction Durby	\N
+277	Vigilante 8: 2nd Offense	2000	Activision	Luxoflux	Racing | Destruction Durby	\N
+278	Virtual Chess 64	1998	Titus Software	Titus Software	Board Game | Strategy	\N
+279	Virtual Pool 64	1998	Crave Entertainment	Celeris	Sports | Billiards	\N
+280	Waialae Country Club: True Golf Classics	1998	Nintendo	T&E Soft	Sports | Golf	\N
+281	War Gods	1997	Midway	Eurocom	Arcade | Action | 3D Fighting	\N
+282	Wave Race 64	1996	Nintendo	Nintendo	Sports | Jet Ski	\N
+283	Wayne Gretzky's 3D Hockey	1996	Midway	Williams Entertainment	Sports | Ice Hockey	\N
+284	Wayne Gretzky's 3D Hockey '98	1997	Midway	Software Creations	Sports | Ice Hockey	\N
+285	WCW Backstage Assault	2000	Electronic Arts	Kodiak Interactive	Sports | Wrestling	\N
+286	WCW Mayhem	1999	Electronic Arts	Kodiak Interactive	Sports | Wrestling	\N
+287	WCW Nitro	1999	THQ	Inland Productions	Sports | Wrestling	\N
+288	WCW vs. nWo: World Tour	1997	THQ	AKI	Sports | Wrestling	\N
+289	WCW/nWo Revenge	1998	THQ	AKI	Sports | Wrestling	\N
+290	Wetrix	1998	Ocean Software | Infogrames Multimedia	Zed Two	Arcade | Action | Puzzle	\N
+291	Wheel of Fortune	1997	GameTek	GameTek	Game Show | Knowledge	\N
+292	WinBack	1999	Koei	Omega Force	Action | Adventure | 3D Shooter	\N
+293	Wipeout 64	1998	Midway	Psygnosis	Racing | Hovercraft	\N
+294	World Cup 98	1998	Electronic Arts	Electronic Arts	Sports | Soccer	\N
+295	World Driver Championship	1999	Midway	Boss Game Studios	Racing | Automobile	\N
+296	The World Is Not Enough	2000	EA Games	Eurocom	Action | First-Person Shooter	\N
+297	Worms Armageddon	2000	Infogrames	Infogrames Lyon House	Strategy | Puzzle	\N
+298	WWF Attitude	1999	Acclaim Sports	Iguana West	Sports | Wrestling	\N
+299	WWF No Mercy	2000	THQ	AKI	Sports | Wrestling	\N
+300	WWF War Zone	1998	Acclaim Sports	Iguana West	Sports | Wrestling	\N
+301	WWF WrestleMania 2000	1999	THQ	AKI	Sports | Wrestling	\N
+302	Xena: Warrior Princess: The Talisman of Fate	1999	Titus Software	Saffire Corporation	Arcade | Action | 3D Fighting	\N
+303	Yoshi's Story	1997	Nintendo	Nintendo	Action | Adventure | 2D Platformer	\N
+305	1080° Snowboarding	1998	Nintendo	Nintendo EAD	Sports | Snowboarding	\N
+\.
+
+
+--
+-- Data for Name: glossaries; Type: TABLE DATA; Schema: public; Owner: cory
+--
+
+COPY public.glossaries (id, name, definition, author) FROM stdin;
+\.
+
+
+--
+-- Data for Name: placements; Type: TABLE DATA; Schema: public; Owner: cory
+--
+
+COPY public.placements (race_id, player_id, placement, "time") FROM stdin;
+\.
+
+
+--
+-- Data for Name: players; Type: TABLE DATA; Schema: public; Owner: cory
+--
+
+COPY public.players (id, name, stream) FROM stdin;
+1	sp0ck1	sp0ck1
+2	poptart_cat	poptart_cat
+3	Tossed_Fish	TossedFish
+\.
+
+
+--
+-- Data for Name: races; Type: TABLE DATA; Schema: public; Owner: cory
+--
+
+COPY public.races (id, date, game_id, url, description) FROM stdin;
+1	2019-08-05	195	https://www.speedrunslive.com/races/result/257617	\N
+2	2019-08-17	282	http://www.speedrunslive.com/races/result/258390	\N
+3	2019-08-31	35	http://www.speedrunslive.com/races/result/259299	\N
+4	2019-09-15	219	http://www.speedrunslive.com/races/result/260177	\N
+5	2019-09-21	124	http://www.speedrunslive.com/races/result/260460	\N
+6	2019-09-29	97	http://www.speedrunslive.com/races/result/261055	\N
+7	2019-10-12	296	http://www.speedrunslive.com/races/result/261951	\N
+8	2019-10-19	215	http://www.speedrunslive.com/races/result/262382	\N
+9	2019-10-27	245	http://www.speedrunslive.com/races/result/262825	\N
+10	2019-11-03	251	http://www.speedrunslive.com/races/result/263231	\N
+11	2019-11-10	197	http://www.speedrunslive.com/races/result/263667	\N
+12	2019-11-16	135	http://www.speedrunslive.com/races/result/263989	\N
+13	2019-11-23	136	http://www.speedrunslive.com/races/result/264396	\N
+14	2019-11-30	118	http://www.speedrunslive.com/races/result/264777	\N
+15	2019-12-08	267	http://www.speedrunslive.com/races/result/265462	\N
+16	2019-12-14	260	http://www.speedrunslive.com/races/result/265943	\N
+17	2019-12-21	142	http://www.speedrunslive.com/races/result/266444	\N
+18	2019-12-28	233	http://www.speedrunslive.com/races/result/266711	\N
+19	2020-01-06	214	http://www.speedrunslive.com/races/result/267226	\N
+20	2020-01-25	44	http://www.speedrunslive.com/races/result/268321	\N
+21	2020-02-01	45	http://www.speedrunslive.com/races/result/268825	\N
+22	2020-02-10	14	http://www.speedrunslive.com/races/result/269347	\N
+23	2020-02-15	36	http://www.speedrunslive.com/races/result/269752	\N
+24	2020-02-21	280	http://www.speedrunslive.com/races/result/270099	\N
+25	2020-02-23	55	http://www.speedrunslive.com/races/result/270153	\N
+26	2020-02-29	303	http://www.speedrunslive.com/races/result/270548	\N
+27	2020-03-07	201	http://www.speedrunslive.com/races/result/271064	\N
+28	2020-03-15	223	http://www.speedrunslive.com/races/result/271734	\N
+29	2020-03-25	61	http://www.speedrunslive.com/races/result/272463	\N
+30	2020-03-28	30	http://www.speedrunslive.com/races/result/272833	\N
+31	2020-04-05	153	http://www.speedrunslive.com/races/result/273481	\N
+32	2020-04-11	240	http://www.speedrunslive.com/races/result/273724	\N
+33	2020-04-19	100	http://www.speedrunslive.com/races/result/274505	\N
+34	2020-04-28	60	http://www.speedrunslive.com/races/result/275130	\N
+35	2020-05-06	24	http://www.speedrunslive.com/races/result/275491	\N
+36	2020-05-09	132	http://www.speedrunslive.com/races/result/275722	\N
+37	2020-05-16	261	http://www.speedrunslive.com/races/result/275974	\N
+38	2020-05-29	12	http://www.speedrunslive.com/races/result/276466	\N
+39	2020-06-01	246	http://www.speedrunslive.com/races/result/276542	\N
+40	2020-06-08	228	http://www.speedrunslive.com/races/result/276934	\N
+41	2020-06-13	66	http://www.speedrunslive.com/races/result/277052	\N
+42	2020-07-02	257	https://www.speedrunslive.com/races/result/277870	\N
+43	2020-07-15	53	https://www.speedrunslive.com/races/result/278388	\N
+44	2020-07-03	54	https://www.speedrunslive.com/races/result/277934	\N
+45	2020-07-15	2	https://www.speedrunslive.com/races/result/278304	\N
+46	2020-07-19	52	https://www.speedrunslive.com/races/result/278554	\N
+47	2020-07-25	46	https://www.speedrunslive.com/races/result/278746	\N
+48	2020-08-01	238	https://www.speedrunslive.com/races/result/278928	\N
+49	2020-08-09	62	https://www.speedrunslive.com/races/result/279149	\N
+50	2020-08-16	226	https://www.speedrunslive.com/races/result/279270	\N
+51	2020-08-23	305	https://www.speedrunslive.com/races/result/279405	\N
+52	2020-08-23	229	https://www.speedrunslive.com/races/result/279412	\N
+53	2020-10-10	119	https://www.speedrunslive.com/races/result/280452	\N
+54	2020-09-06	28	https://www.speedrunslive.com/races/result/279554	\N
+55	2020-09-12	59	https://www.speedrunslive.com/races/result/279610	\N
+56	2020-10-10	3	https://www.speedrunslive.com/races/result/280435	\N
+57	2020-09-23	15	https://www.speedrunslive.com/races/result/280159	\N
+59	2020-10-10	39	https://www.speedrunslive.com/races/result/280443	\N
+60	2020-10-10	276	https://www.speedrunslive.com/races/result/280464	\N
+61	2020-10-19	16	https://www.speedrunslive.com/races/result/280716	\N
+62	2020-10-24	13	https://www.speedrunslive.com/races/result/280958	\N
+63	2020-10-31	230	https://www.speedrunslive.com/races/result/281103	\N
+64	2020-11-06	241	https://www.speedrunslive.com/races/result/281244	\N
+65	2020-11-22	150	https://www.speedrunslive.com/races/result/281628	\N
+66	2020-11-22	139	https://www.speedrunslive.com/races/result/281508	\N
+67	2020-11-30	134	https://www.speedrunslive.com/races/result/281762	\N
+68	2020-12-05	290	https://www.speedrunslive.com/races/result/281876	\N
+69	2020-12-13	94	https://www.speedrunslive.com/races/result/282122	\N
+70	2020-12-25	156	https://www.speedrunslive.com/races/result/282261	\N
+71	2021-01-12	216	https://www.speedrunslive.com/races/result/282716	\N
+72	2021-01-12	31	https://www.speedrunslive.com/races/result/282660	\N
+73	2021-01-12	141	https://www.speedrunslive.com/races/result/282717	\N
+74	2021-01-12	194	https://www.speedrunslive.com/races/result/282718	\N
+75	2021-01-16	262	https://www.speedrunslive.com/races/result/282832	\N
+76	2021-01-23	147	https://www.speedrunslive.com/races/result/282962	\N
+77	2021-02-04	242	https://www.speedrunslive.com/races/result/283198	\N
+78	2021-02-20	127	https://www.speedrunslive.com/races/result/283474	\N
+79	2021-02-19	128	https://www.speedrunslive.com/races/result/283435	\N
+80	2021-02-20	129	https://www.speedrunslive.com/races/result/283477	\N
+81	2021-02-20	130	https://www.speedrunslive.com/races/result/283469	\N
+82	2021-02-06	131	https://www.speedrunslive.com/races/result/283245	\N
+83	2021-02-14	137	https://www.speedrunslive.com/races/result/283353	\N
+84	2021-02-20	74	https://www.speedrunslive.com/races/result/283442	\N
+85	2021-02-27	259	https://www.speedrunslive.com/races/result/283594	\N
+86	2021-03-06	196	https://www.speedrunslive.com/races/result/283669	\N
+87	2021-03-13	225	https://www.speedrunslive.com/races/result/283842	\N
+88	2021-03-20	71	https://www.speedrunslive.com/races/result/284010	\N
+89	2021-03-20	72	https://www.speedrunslive.com/races/result/284009	\N
+90	2021-03-20	73	https://www.speedrunslive.com/races/result/284011	\N
+91	2021-03-27	27	https://www.speedrunslive.com/races/result/284143	\N
+92	2021-04-03	160	https://www.speedrunslive.com/races/result/284275	\N
+93	2021-04-10	93	https://www.speedrunslive.com/races/result/284397	\N
+94	2021-04-17	159	https://www.speedrunslive.com/races/result/284506	\N
+95	2021-05-15	154	https://www.speedrunslive.com/races/result/284940	\N
+96	2021-04-29	152	https://www.speedrunslive.com/races/result/284685	\N
+97	2021-05-02	105	https://www.speedrunslive.com/races/result/284725	\N
+98	2021-05-08	38	https://www.speedrunslive.com/races/result/284756	\N
+99	2021-05-15	275	https://www.speedrunslive.com/races/result/284938	\N
+100	2021-05-31	239	https://www.speedrunslive.com/races/result/285080	\N
+101	2021-07-03	283	https://www.speedrunslive.com/races/result/285360	\N
+102	2021-07-03	163	https://www.speedrunslive.com/races/result/285361	\N
+103	2021-06-12	18	https://www.speedrunslive.com/races/result/285173	\N
+104	2021-06-12	88	https://www.speedrunslive.com/races/result/285175	\N
+105	2021-07-03	281	https://www.speedrunslive.com/races/result/285363	\N
+106	2021-07-03	302	https://www.speedrunslive.com/races/result/285362	\N
+107	2021-07-03	67	https://www.speedrunslive.com/races/result/285359	\N
+108	2021-10-14	264	https://www.speedrunslive.com/races/result/286127	\N
+109	2021-07-17	96	https://racetime.gg/n64mania/mega-glitch-9265	\N
+110	2021-07-31	112	https://racetime.gg/n64mania/splendid-stardrop-8703	\N
+111	2021-08-07	32	https://racetime.gg/n64mania/vanilla-conker-5153	\N
+112	2021-08-14	106	https://racetime.gg/n64mania/tasty-celeste-7917	\N
+113	2021-08-28	243	https://racetime.gg/n64mania/gnarly-ken-4339	\N
+114	2021-09-04	69	https://racetime.gg/n64mania/hungry-metroid-5280	\N
+115	2021-09-11	258	https://racetime.gg/n64mania/powerful-fortress-2923	\N
+116	2021-09-11	202	https://racetime.gg/n64mania/proud-misty-4233	\N
+117	2021-09-18	211	https://racetime.gg/n64mania/priceless-vivi-6709	\N
+118	2021-09-25	256	https://racetime.gg/n64mania/vanilla-pichu-0424	\N
+119	2021-10-02	103	https://racetime.gg/n64mania/superb-wiggler-2967	\N
+120	2021-10-23	304	https://racetime.gg/n64mania/virtual-cheat-0469	\N
+121	2021-10-30	218	https://racetime.gg/n64mania/dizzy-mario-7696	\N
+122	2021-11-06	299	https://racetime.gg/n64mania/good-twist-2074	\N
+123	2021-11-13	37	https://racetime.gg/n64mania/dapper-impossible-9238	\N
+124	2021-12-04	212	https://racetime.gg/n64mania/smart-sevenk-6396	\N
+125	2021-12-11	292	https://racetime.gg/n64mania/gorgeous-cruisin-6860	\N
+126	2021-12-18	292	https://racetime.gg/n64mania/perfect-hercules-8389	\N
+127	2022-01-08	155	https://racetime.gg/n64mania/powerful-rumble-1298	\N
+128	2022-01-15	221	https://racetime.gg/n64mania/swag-sevenk-3219	\N
+129	2022-01-28	201	https://racetime.gg/n64mania/mega-blast-6673	\N
+130	2022-01-29	161	https://racetime.gg/n64mania/clean-cruisin-4213	\N
+131	2022-02-05	158	https://racetime.gg/n64mania/magnificent-mario-6885	\N
+132	2022-02-12	177	https://racetime.gg/n64mania/secret-pretzel-7283	\N
+133	2022-02-12	178	https://racetime.gg/n64mania/mini-pak-4235	\N
+134	2022-02-12	179	https://racetime.gg/n64mania/gnarly-salmoneus-9950	\N
+135	2022-02-12	180	https://racetime.gg/n64mania/odd-cruisin-8136	\N
+136	2022-02-19	191	https://racetime.gg/n64mania/salty-netherrealm-8363	\N
+137	2022-02-26	25	https://racetime.gg/n64mania/amused-worm-0752	\N
+138	2022-03-05	144	https://racetime.gg/n64mania/prudent-subzero-8542	\N
+139	2022-03-12	20	https://racetime.gg/n64mania/secret-automobili-5962	\N
+140	2022-03-19	190	https://racetime.gg/n64mania/tasty-rocket-2351	\N
+141	2022-04-02	190	https://racetime.gg/n64mania/sublime-rumble-8752	\N
+142	2022-04-09	190	https://racetime.gg/n64mania/comic-beaverbother-4255	\N
+143	2022-04-16	6	https://racetime.gg/n64mania/mini-conker-0023	\N
+144	2022-04-16	7	https://racetime.gg/n64mania/adequate-naboo-9777	\N
+145	2022-04-16	8	https://racetime.gg/n64mania/invincible-glover-4188	\N
+146	2022-04-23	21	https://racetime.gg/n64mania/elegant-worm-1889	\N
+147	2022-04-30	172	https://racetime.gg/n64mania/hyper-blast-7912	\N
+148	2022-05-14	126	https://racetime.gg/n64mania/classic-glove-1943	\N
+149	2022-05-14	65	https://racetime.gg/n64mania/puzzled-impossible-9829	\N
+150	2022-05-21	164	https://racetime.gg/n64mania/jolly-kong-6781	\N
+151	2022-05-21	165	https://racetime.gg/n64mania/smart-goemon-3867	\N
+152	2022-05-21	166	https://racetime.gg/n64mania/odd-dinosaur-9151	\N
+153	2022-05-28	108	https://racetime.gg/n64mania/clean-automobili-9927	\N
+154	2022-06-04	271	https://racetime.gg/n64mania/magnificent-pan-1297	\N
+155	2022-06-11	244	https://racetime.gg/n64mania/calm-pain-0042	\N
+156	2022-06-25	146	https://racetime.gg/n64mania/tactical-automobili-2672	\N
+157	2022-07-02	58	https://racetime.gg/n64mania/frantic-turok-1679	\N
+158	2022-07-09	75	https://racetime.gg/n64mania/dapper-bomber-7397	\N
+159	2022-07-16	186	https://racetime.gg/n64mania/puzzled-clyde-7931	\N
+160	2022-07-23	151	https://racetime.gg/n64mania/legendary-dinosaur-2004	\N
+161	2022-09-03	187	https://racetime.gg/n64mania/gorgeous-glover-5873	\N
+162	2022-09-10	204	https://racetime.gg/n64mania/adequate-nutta-6610	\N
+163	2022-09-17	11	https://racetime.gg/n64mania/casual-twine-6327	\N
+164	2022-09-24	47	https://racetime.gg/n64mania/saucy-blast-7839	\N
+165	2022-10-01	291	https://racetime.gg/n64mania/magnificent-turok-0510	\N
+166	2022-10-08	247	https://racetime.gg/n64mania/foolish-nutta-1850	\N
+167	2022-10-15	92	https://racetime.gg/n64mania/clean-mario-7915	\N
+168	2022-10-22	254	https://racetime.gg/n64mania/jolly-twanky-8655	\N
+169	2022-10-29	41	https://racetime.gg/n64mania/dynamax-kong-5605	\N
+\.
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: cory
+--
+
+COPY public.schema_migrations (version) FROM stdin;
+20221227075352
+20230101185220
+20230115042115
+20230115042622
+\.
+
+
+--
+-- Data for Name: terms; Type: TABLE DATA; Schema: public; Owner: cory
+--
+
+COPY public.terms (id, name, definition, author, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: cory
+--
+
+SELECT pg_catalog.setval('public.comment_id_seq', 1, false);
+
+
+--
+-- Name: glossaries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: cory
+--
+
+SELECT pg_catalog.setval('public.glossaries_id_seq', 1, false);
+
+
+--
+-- Name: player_id_seq; Type: SEQUENCE SET; Schema: public; Owner: cory
+--
+
+SELECT pg_catalog.setval('public.player_id_seq', 3, true);
+
+
+--
+-- Name: race_id_seq; Type: SEQUENCE SET; Schema: public; Owner: cory
+--
+
+SELECT pg_catalog.setval('public.race_id_seq', 1, false);
+
+
+--
+-- Name: terms_id_seq; Type: SEQUENCE SET; Schema: public; Owner: cory
+--
+
+SELECT pg_catalog.setval('public.terms_id_seq', 1, false);
+
+
+--
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: comments comment_pkey; Type: CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT comment_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: games game_id_pk; Type: CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.games
+    ADD CONSTRAINT game_id_pk PRIMARY KEY (id);
+
+
+--
+-- Name: games game_id_unique; Type: CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.games
+    ADD CONSTRAINT game_id_unique UNIQUE (id);
+
+
+--
+-- Name: glossaries glossaries_pkey; Type: CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.glossaries
+    ADD CONSTRAINT glossaries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: placements placements_ids_pk; Type: CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.placements
+    ADD CONSTRAINT placements_ids_pk PRIMARY KEY (race_id, player_id);
+
+
+--
+-- Name: players player_pkey; Type: CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.players
+    ADD CONSTRAINT player_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: races race_pkey; Type: CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.races
+    ADD CONSTRAINT race_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: terms terms_pkey; Type: CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.terms
+    ADD CONSTRAINT terms_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: comments comment_player_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT comment_player_id_fk FOREIGN KEY (player_id) REFERENCES public.players(id) NOT VALID;
+
+
+--
+-- Name: comments comment_race_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT comment_race_id_fk FOREIGN KEY (race_id) REFERENCES public.races(id) NOT VALID;
+
+
+--
+-- Name: CONSTRAINT comment_race_id_fk ON comments; Type: COMMENT; Schema: public; Owner: cory
+--
+
+COMMENT ON CONSTRAINT comment_race_id_fk ON public.comments IS 'comment.race_id = race.id';
+
+
+--
+-- Name: placements placements_player_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.placements
+    ADD CONSTRAINT placements_player_id_fk FOREIGN KEY (player_id) REFERENCES public.players(id) NOT VALID;
+
+
+--
+-- Name: placements placements_race_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.placements
+    ADD CONSTRAINT placements_race_id_fk FOREIGN KEY (race_id) REFERENCES public.races(id) NOT VALID;
+
+
+--
+-- Name: races race_game_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: cory
+--
+
+ALTER TABLE ONLY public.races
+    ADD CONSTRAINT race_game_id_fk FOREIGN KEY (game_id) REFERENCES public.games(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
