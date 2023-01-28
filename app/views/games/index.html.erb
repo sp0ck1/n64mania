@@ -1,0 +1,15 @@
+<table>
+ <tr>
+  <th>ID</th>
+  <th>Name</th>
+  
+ </tr>
+ <% @games.each do |game| %>
+ <% j = game.id %>
+ <tr>
+  <td><%= j %></td>
+  <td><%= link_to Game.where(id: game.id).pluck(:name).first, game_path(game) %></td>
+  <td><%= game.name%>
+ </tr>
+ <% end %>
+</table>

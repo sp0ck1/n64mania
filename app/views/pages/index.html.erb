@@ -1,0 +1,26 @@
+<!-- N64Mania Homepage Body -->
+
+<div class="main">
+
+<%= image_tag "rushlogo.png" %>
+<%= form_tag("game-search", method: 'post', class: "form-inline") do %>
+  <div id= "search-data" class="form-search search-data flexed" data-games="<%= @games.to_json %>">
+    <%= text_field_tag :autoComplete, nil, autocomplete: :off, class: "form-control search-input" %>
+    <%= submit_tag "Search", class: "btn btn-primary button-home btn-game-search" %>
+    
+
+  </div>
+<% end %>
+
+<div class="nav-links">
+<a href="games" class="nav-link">List of All Games</a>
+<a href="races" class="nav-link">List of All Races</a>
+<a href="players" class="nav-link">List of All Players</a>
+<a href="games/unplayed" class="nav-link">List of All Unplayed Games</a>
+</div>
+</div>
+<!-- What should really happen here is that there is a table, and you click "Show Games" or "Show Players" or "Show Unplayed" or "Show Races"
+and it displays your appropriate table. This is probably where the AJAX stuff from https://guides.rubyonrails.org/v6.1.0/working_with_javascript_in_rails.html
+comes in. Check out the question and answer here: https://stackoverflow.com/questions/23926204/updating-table-data-in-rails-using-ajax >
+</div>
+-->

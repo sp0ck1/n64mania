@@ -1,0 +1,22 @@
+{
+  "name": "n64mania",
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "^5.4.3",
+    "@tarekraafat/autocomplete.js": "^10.2.7",
+    "jquery": "^3.6.3",
+    "jquery-ui": "^1.13.2",
+    "jquery-ujs": "^1.2.3",
+    "turbolinks": "^5.2.0",
+    "webpack": "^4.0.0"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "webpack-cli": "^4.0.0",
+    "webpack-dev-server": "2.11.1"
+  }
+}
