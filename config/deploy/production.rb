@@ -17,11 +17,13 @@
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-# role :app, %w{deploy@example.com}, my_property: :my_value
-# role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
-# role :db,  %w{deploy@example.com}
+role :app, %w{deploy@52.205.191.94}
+role :web, %w{deploy@52.205.191.94}
+role :db,  %w{deploy@52.205.191.94}
 
-
+set :rails_env, 'production'
+set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))
+server '52.205.191.94', user: 'deploy', roles: %w{web app db}
 
 # Configuration
 # =============
@@ -41,11 +43,11 @@
 #
 # Global options
 # --------------
-#  set :ssh_options, {
-#    keys: %w(/home/user_name/.ssh/id_rsa),
-#    forward_agent: false,
-#    auth_methods: %w(password)
-#  }
+  set :ssh_options, {
+    keys: %w(~/.ssh/jhawk-aws.pem),
+    forward_agent: false,
+    auth_methods: %w(publickey password)
+  }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
@@ -59,3 +61,5 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+

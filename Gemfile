@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.7'
+ruby '2.7.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.6'
@@ -62,12 +62,12 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
+## from https://gist.github.com/linuxdevops-34/664236a011db3ebe3c12a1f2646f49e6
   gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-passenger', '>= 0.1.1'
-  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
   gem 'capistrano-rvm'
-  gem 'capistrano-figaro-yml', '~> 1.0.2'
 end
 
 group :test do

@@ -75,17 +75,16 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-bundler (2.1.0)
       capistrano (~> 3.1)
-    capistrano-figaro-yml (1.0.5)
-      capistrano (~> 3.1)
-      sshkit (~> 1.2, >= 1.2.0)
-    capistrano-passenger (0.2.1)
-      capistrano (~> 3.0)
     capistrano-rails (1.6.2)
       capistrano (~> 3.1)
       capistrano-bundler (>= 1.1, < 3)
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano3-puma (5.2.0)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (>= 4.0, < 6.0)
     capybara (3.36.0)
       addressable
       matrix
@@ -317,10 +316,9 @@ DEPENDENCIES
   byebug
   capistrano
   capistrano-bundler
-  capistrano-figaro-yml (~> 1.0.2)
-  capistrano-passenger (>= 0.1.1)
   capistrano-rails
   capistrano-rvm
+  capistrano3-puma
   capybara (>= 2.15)
   composite_primary_keys
   figaro
@@ -345,7 +343,7 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 RUBY VERSION
-   ruby 2.6.7p197
+   ruby 2.7.7p221
 
 BUNDLED WITH
-   1.17.2
+   2.1.4

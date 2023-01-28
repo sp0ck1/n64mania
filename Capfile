@@ -32,8 +32,9 @@ require "capistrano/rvm"
 require "capistrano/bundler"
 require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
-require "capistrano/passenger"
-require "capistrano/figaro_yml"
+# require "capistrano/passenger" using puma instead of Passenger now
+require "capistrano/puma"
+install_plugin Capistrano::Puma  # Default puma tasks
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
