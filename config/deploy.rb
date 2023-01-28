@@ -64,7 +64,7 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 # set :format,        :pretty
 # set :log_level,     :debug
 # set :keep_releases, 5
-set :branch, master
+set :branch, :master
 ## Linked Files & Directories (Default None):
 # set :linked_files, %w{config/database.yml}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
