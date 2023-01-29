@@ -37,4 +37,6 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 restart_command "bundle exec --keep-file-descriptors puma"
-bind "unix://#{shared_dir}/sockets/puma.sock"
+unless ENV.fetch("RAILS_HOME") == "true"
+  bind "unix://#{shared_dir}/sockets/puma.sock"
+end
