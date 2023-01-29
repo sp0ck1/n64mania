@@ -12,7 +12,7 @@
     "jquery-ui": "^1.13.2",
     "jquery-ujs": "^1.2.3",
     "turbolinks": "^5.2.0",
-    "webpack": "^5.75.0",
+    "webpack": "^4.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"
   },
