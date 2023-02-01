@@ -6,7 +6,13 @@ Rails.application.routes.draw do
   
   post 'parse_input', to: 'pages#parse_input'
   post 'game-search', to: 'pages#parse_search'
-  get 'unplayed/:genre',  to: 'races#search_by_genre'
+  get 'unplayed/:genre',  to: 'races#search_by_genre' # rename/reroute this endpoint
+  get 'games/unplayed', to: 'games#unplayed'
+  scope :api do
+    get 'games/unplayed', to: 'games#api_unplayed'
+    get 'games/played',   to: 'games#played'
+    get 'races/random',   to: 'races#random'
+  end
   resources :games
   resources :players
   resources :races

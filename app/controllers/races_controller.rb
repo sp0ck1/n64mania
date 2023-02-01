@@ -1,7 +1,7 @@
 class RacesController < ApplicationController
 
     def index
-        @races = Race.all
+        @races = Race.all.sort_by { |race| race.date }
     end
 
     def search_by_genre
@@ -18,5 +18,9 @@ class RacesController < ApplicationController
         end  
       end
       render :json => racing_games
+    end
+
+    def random
+      render :json => Race.all.sample
     end
 end

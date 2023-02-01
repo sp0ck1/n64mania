@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Content</th>
+      <th>Date (estimated)</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +14,8 @@
       <tr>
         <td><%= Game.where(id: race.game_id).first.name %></td>
         <td><%= race.date %></td>
-        <td><%= link_to "Show", race %></td>
-        <td><%= link_to "Edit", edit_race_path(race) %></td>
-        <td><%= link_to "Destroy", race, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></td>
+        <td><%= link_to "View", race %></td>
+
       </tr>
     <% end %>
   </tbody>

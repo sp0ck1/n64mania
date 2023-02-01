@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
 
     def index
-        @games = Game.all
+        @games = Game.all.sort_by { |game| game.name }
     end
 
     def show
@@ -15,5 +15,13 @@ class GamesController < ApplicationController
     def test
         puts "It's real!"
         render json: Game.find(params[:id])
+    end
+
+    def unplayed
+        race_ids = []
+        Race.all.each do |race|
+            race_ids << race.game_id
+        end
+    @rgames = Game.where.not(id: race_ids) 
     end
 end
