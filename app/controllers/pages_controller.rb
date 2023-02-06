@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     @races = Race.all.sort
     @games = Game.pluck(:name).sort
     @players = Player.all
+    @unplayed = Game.unplayed
   end  
 
   # Parses search from the search bar on the homepage. 

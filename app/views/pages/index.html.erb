@@ -13,10 +13,22 @@
 <% end %>
 
 <div class="nav-links">
-<a href="games" class="nav-link">List of All Games</a>
-<a href="races" class="nav-link">List of All Races</a>
-<a href="players" class="nav-link">List of All Players</a>
-<a href="games/unplayed" class="nav-link">List of All Unplayed Games</a>
+  <div class="nav-link-box">
+    <a href="games" class="nav-link">List of All Games</a>
+    <p class="nav-link-count"><%= @games.count %></p>
+  </div>
+  <div class="nav-link-box">
+    <a href="races" class="nav-link">List of All Races</a>
+    <p class="nav-link-count"><%= @races.count %></p>
+  </div>
+  <div class="nav-link-box">
+    <a href="players" class="nav-link">List of All Players</a>
+    <p class="nav-link-count"><%= @players.count %></p>
+  </div>
+  <div class="nav-link-box">
+    <a href="games/unplayed" class="nav-link">List of All Unplayed Games</a>
+    <p class="nav-link-count"><%= @unplayed.count %></p>
+  </div>
 </div>
 </div>
 <!-- What should really happen here is that there is a table, and you click "Show Games" or "Show Players" or "Show Unplayed" or "Show Races"

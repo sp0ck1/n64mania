@@ -19,6 +19,28 @@ body {
     margin-top: 2em;
 }
 
+.nav-link-count {
+    display:inherit;
+    justify-content: center;
+    text-align: center;
+}
+
+.nav-link-box {
+    
+    border-width: 2px;
+    border-color: black;
+    border-style: dashed;
+    border-radius: 10px;
+    padding: 20px;
+    min-width: 236px;
+    margin:auto;
+}
+
+.nav-link-box a {
+    display:flex;
+    justify-content: center;
+}
+
 .btn-game-search {
     background-color: white;
     height: 40px;
@@ -28,4 +50,10 @@ body {
     border-radius: 4px;
     border: 1px solid rgba(33, 33, 33, .2);
     margin-left: 1px;
+}
+
+footer {
+    display:flex;
+    justify-content: center;
+    margin-top: 50px;
 }
