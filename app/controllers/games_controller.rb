@@ -17,11 +17,15 @@ class GamesController < ApplicationController
         render json: Game.find(params[:id])
     end
 
-    def unplayed
+    def api_unplayed
         race_ids = []
         Race.all.each do |race|
             race_ids << race.game_id
         end
     @rgames = Game.where.not(id: race_ids) 
+    render json: @rgames
     end
+
+    
+    
 end

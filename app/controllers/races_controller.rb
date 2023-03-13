@@ -23,4 +23,8 @@ class RacesController < ApplicationController
     def random
       render :json => Race.all.sample
     end
+    
+    def random_url
+      render :html => Race.all.sample.url
+    end
 end

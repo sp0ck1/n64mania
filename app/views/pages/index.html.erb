@@ -7,8 +7,6 @@
   <div id= "search-data" class="form-search search-data flexed" data-games="<%= @games.to_json %>">
     <%= text_field_tag :autoComplete, nil, autocomplete: :off, class: "form-control search-input" %>
     <%= submit_tag "Search", class: "btn btn-primary button-home btn-game-search" %>
-    
-
   </div>
 <% end %>
 
