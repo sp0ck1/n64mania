@@ -9,9 +9,11 @@ Rails.application.routes.draw do
   get 'unplayed/:genre',  to: 'races#search_by_genre' # rename/reroute this endpoint
   get 'games/unplayed', to: 'games#unplayed'
   scope :api do
-    get 'games/unplayed', to: 'games#api_unplayed'
-    get 'games/played',   to: 'games#played'
-    get 'races/random',   to: 'races#random'
+    get 'games/unplayed',   to: 'games#api_unplayed'
+    get 'games/played',     to: 'games#played'
+    get 'races/random',     to: 'races#random'
+    get 'games/random',     to: 'games#random'
+    get 'races/random/url', to: 'races#random_url'
   end
   resources :games
   resources :players

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_15_042622) do
+ActiveRecord::Schema.define(version: 2023_02_26_224555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2023_01_15_042622) do
     t.text "developer"
     t.text "genre"
     t.string "description"
+    t.boolean "has_moon"
+    t.boolean "has_cali"
     t.index ["id"], name: "game_id_unique", unique: true
   end
 
@@ -54,6 +56,8 @@ ActiveRecord::Schema.define(version: 2023_01_15_042622) do
     t.integer "game_id", limit: 2, null: false
     t.text "url"
     t.string "description"
+    t.string "goal"
+    t.integer "duration"
   end
 
   create_table "terms", force: :cascade do |t|
