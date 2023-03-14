@@ -94,10 +94,6 @@ module RacetimeManager
           comments_arr.each { |comment| comment.save! }
           placements_arr.each { |placement| placement.save! }
 
-
-          # pass players hash to method to check the Player table and add anyone who isn't in
-            # This should be a function of the Player model I think
-            # 2/16/2023: This code is written above, but could be added to Race model if you wanted
         else raise "Game #{game_name} not found! Game not imported."
         end
       end# comments also have to be done as their own method # end unless
@@ -158,6 +154,10 @@ module RacetimeManager
         "Rampage World Tour" 
       when "Star Wars Episode I: Battle for Naboo"
         "Star Wars: Episode I: Battle for Naboo"
+      when "Clayfighter: Sculptor's Cut"
+        "ClayFighter Sculptor's Cut"
+      when  "Clayfighter 63 1/3"
+        "ClayFighter 63⅓"
       else game_name
       end
       game_name
