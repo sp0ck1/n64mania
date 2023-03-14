@@ -31,7 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 ### Custom Dependencies ###
 
 # Change console to pry from irb
-gem 'pry-rails', :group => :development
+gem 'pry-rails'
 
 # Add Solargraph for VSCode
 gem 'solargraph', group: :development
