@@ -26,6 +26,14 @@ class GamesController < ApplicationController
     render json: @rgames
     end
 
-    
+    def random_game_name
+      race_ids = []
+      Race.all.each do |race|
+          race_ids << race.game_id
+      end
+      random_game = Game.where.not(id: race_ids).sample.name
+      render html: random_game
+    end
+      
     
 end
