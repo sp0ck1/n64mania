@@ -3,6 +3,8 @@ require 'uri'
 require 'net/http'
 require 'pry'
 
+###### TODO: Update check to see if dupe by checking duration and game id, NOT date alone!
+
 module RacetimeManager
   class ImportRace < ApplicationService
     # Only works for Racetime.gg races. Do not rename. 
@@ -17,16 +19,16 @@ module RacetimeManager
     def call()
       begin
       race_start = @race_hash["started_at"].to_time
-
-      unless Race.where(date: race_start).exists? # will only import races that do not already exist
-        race_end = @race_hash["ended_at"].to_time
-        race_duration = race_end - race_start # Duration in seconds
+      race_end = @race_hash["ended_at"].to_time
+      race_duration = race_end - race_start # Duration in seconds
 
         game_name = validate_name(@race_hash["goal"]["name"])
 
         game = Game.where('name ILIKE ?', "%#{game_name}%").first # Being Proper probably means breaking this out into a method
+        # binding.pry (DEBUG)
         unless game.id.nil?
-          
+          unless Race.where(duration: race_duration,game_id: game.id).exists? # will only import races that do not already exist
+       
           # Handle race
           game_id = game.id
           new_race_id = Race.last.id + 1
@@ -88,7 +90,7 @@ module RacetimeManager
             # Common parlance refers to this as one's "time," but the length of the whole race is the duration for the purposes of the Race model.
             placement.time = iso8601_to_seconds(entrant["finish_time"]) unless placement.placement == 0
             placements_arr << placement
-          end
+            end
 
           new_race.save!
           comments_arr.each { |comment| comment.save! }
@@ -118,8 +120,8 @@ module RacetimeManager
 
     def validate_name(game_name)
       game_name = case game_name
-      when "Olympic Hockey '98 (Nagano)"
-        "Olympic Hockey Nagano '98"
+      when "Olympic Hockey '98 (Nagano)" # RT name
+        "Olympic Hockey Nagano '98" # DB name
       when "World Cup '98"
         "World Cup 98"
       when "Pokemon Stadium 2"
@@ -158,6 +160,8 @@ module RacetimeManager
         "ClayFighter Sculptor's Cut"
       when  "Clayfighter 63 1/3"
         "ClayFighter 63⅓"
+      when "All Star Baseball '99"
+        "All-Star Baseball 99"
       else game_name
       end
       game_name
