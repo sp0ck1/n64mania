@@ -3,7 +3,8 @@ body {
     min-height: 600px;
     margin:auto;
     font-family: sans-serif;
- 
+    background-color: rgb(236, 236, 236);
+
 }
 
 .flexed {
@@ -57,3 +58,14 @@ footer {
     justify-content: center;
     margin-top: 50px;
 }
+
+a { 
+    text-decoration: none;
+
+}
+
+a:hover {
+    font-weight:bold;
+    color:rgb(48, 163, 13);
+}
+

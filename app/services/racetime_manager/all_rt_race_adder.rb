@@ -44,7 +44,7 @@ module RacetimeManager
           next
         end
       end
-      errors_array.each { |error| puts error }
+      errors_array.sort.each { |error| puts error }
     end
 
 

@@ -1,0 +1,17 @@
+<table>
+ <tr>
+ <th></th>
+  <th>Name</th>
+  <!-- <th>First Race</th>
+  <th>Last Race</th>
+  <th>Twitch URL</th>
+  Add metadata but think about what people will be comfortable with -->
+ </tr>
+ <% @players.each_with_index do |player, index| %>
+ 
+ <td><%= index+1%></td>
+  <td><%= link_to player.name, player_path(player) %></td>
+  
+ </tr>
+ <% end %>
+</table>

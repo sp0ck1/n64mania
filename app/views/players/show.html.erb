@@ -1,0 +1,28 @@
+<div class="players-info">
+<h1> <%= @player.name %> </h1>
+
+<p>Twitch: <%=link_to "https://www.twitch.tv/#{@player.stream}"%></p>
+</div>
+<div class="races-table">
+<h1>All Races</h1>
+<table>
+<tr>
+<th>Race</th>
+<th>Date</th>
+<th>Placement</th>
+<th>Time</th>
+</tr>
+
+<% @races.each do |race| %>
+<% game = Game.where(id: race.game_id).first %>
+<% placement = Placement.where(race_id: race.id, player_id: @player.id).first %>
+<tr>
+<% puts game.name %>
+<td><%= link_to game.name, race_path(race) %></td>
+<td><%= race.date %></td>
+<td><%= placement.placement %></td>
+<td><%= Time.at(placement.time).utc.strftime("%H:%M:%S") %></td>
+</tr>
+<% end %>
+</table>
+</div>

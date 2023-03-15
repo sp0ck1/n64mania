@@ -3,7 +3,7 @@ require 'uri'
 require 'net/http'
 require 'pry'
 
-###### TODO: Update check to see if dupe by checking duration and game id, NOT date alone!
+###### TODO: Add races for multiples of games, like Winback and Paper Mario. Map Paper Marios to 
 
 module RacetimeManager
   class ImportRace < ApplicationService
