@@ -16,12 +16,13 @@
 <% @races.each do |race| %>
 <% game = Game.where(id: race.game_id).first %>
 <% placement = Placement.where(race_id: race.id, player_id: @player.id).first %>
+<% time = Time.at(placement.time).utc.strftime("%H:%M:%S")%>
 <tr>
 <% puts game.name %>
-<td><%= link_to game.name, race_path(race) %></td>
-<td><%= race.date %></td>
-<td><%= placement.placement %></td>
-<td><%= Time.at(placement.time).utc.strftime("%H:%M:%S") %></td>
+<td id="player-race-name"><%= link_to game.name, race_path(race) %></td>
+<td id="player-race-date"><%= race.date %></td>
+<td id="player-race-placement"><%= placement.placement %></td>
+<td id="player-race-time"><%= time == "00:00:00" ? "N/A" : time %></td>
 </tr>
 <% end %>
 </table>
