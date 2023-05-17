@@ -1,0 +1,26 @@
+<div class="race-info">
+<h1><%= Game.find(@race.game_id).name %></h1>
+<p id="race-goal"> 
+<%= unless @race.description.nil? 
+        "Goal: #{@race.description}" 
+    end
+    %>
+</p>
+
+<table>
+<tr>
+<th>Player</th>
+<th>Time</th>
+<th>Comment</th>
+</tr>
+
+<% @race.placements.each do |p|%>
+    <tr>
+        <td><%=p.player.name%></td>
+        <td><%=p.time%></td>
+        <td><%=p.race.comments.where(player_id: p.player.id).first.comment_text%></td> <%# TODO: Surely this can be refactored %>
+    
+    </tr>
+    <% end %>
+</table>
+</div>
