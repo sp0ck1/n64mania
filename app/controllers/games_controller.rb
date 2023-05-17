@@ -17,7 +17,7 @@ class GamesController < ApplicationController
         render json: Game.find(params[:id])
     end
 
-    def api_unplayed
+    def api_unplayed # Include year in this json
         race_ids = []
         Race.all.each do |race|
             race_ids << race.game_id

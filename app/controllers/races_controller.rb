@@ -4,6 +4,10 @@ class RacesController < ApplicationController
         @races = Race.all.sort_by { |race| race.date }
     end
 
+    def show
+      @race = Race.find(params[:id])
+    end
+
     def search_by_genre
       racing_games = {}
       race_game_ids = []
