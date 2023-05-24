@@ -53,7 +53,7 @@ module RacetimeManager
             plain_name = user["name"]
             twitch_name = user["twitch_name"]
 
-            player = Player.where(stream: twitch_name).first
+            player = Player.where(stream: twitch_name).first # If stream = nil, defaults to first nil stream. Cannot add new players this way if they do not have a stream. TODO!!!!
           
             # Handle players
             # It's fine if this happens and then the script fails, because it will just get the player next time.
