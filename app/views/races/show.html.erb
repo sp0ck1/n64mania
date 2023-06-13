@@ -1,5 +1,5 @@
 <div class="race-info">
-<h1><%= Game.find(@race.game_id).name %></h1>
+<h1><%= link_to Game.find(@race.game_id).name, @race.url %></h1>
 <p id="race-goal"> 
 <%= unless @race.description.nil? 
         "Goal: #{@race.description}" 

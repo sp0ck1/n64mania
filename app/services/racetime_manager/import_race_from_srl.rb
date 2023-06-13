@@ -12,16 +12,21 @@ module RacetimeManager
 
     def call()
       # . . . importing from SRL hash instead of RT . . .
+      puts "Importing race from SRL"
       begin
-        race_date = Time.at(@race_hash["raceDate"]).to_date
+        race_date = Time.at(@race_hash["data"]["raceDate"]).to_date
       # Need to map all player names from SRL to plain_names or stream_names first
       # https://www.speedrunslive.com/api/players/Pikapals to get via srl name
 
-        unless Race.where(date:race_start).exists?
-          entrants_hash = @race_hash["entrants"]
+        unless Race.where(date: race_start).exists? # Cannot account for multiple game same date this way
+          entrants_hash = @race_hash["data"]["entrants"]
           race_duration = get_duration_from_entrants(entrants_hash)
 
         end
+
+      rescue
+        binding.pry
+      end
       end
 
     end
@@ -70,4 +75,4 @@ module RacetimeManager
       end
 
   end
-end
+

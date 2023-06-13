@@ -5,16 +5,16 @@
     <tr>
       <th>Title</th>
       <th>Date (estimated)</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @races.each do |race| %>
       <tr>
-        <td><%= Game.where(id: race.game_id).first.name %></td>
+        <td><%= link_to Game.where(id: race.game_id).first.name, race %></td>
         <td><%= race.date %></td>
-        <td><%= link_to "View", race %></td>
+    
 
       </tr>
     <% end %>
