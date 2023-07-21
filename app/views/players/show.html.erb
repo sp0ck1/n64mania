@@ -1,7 +1,7 @@
 <div class="players-info">
 <h1> <%= @player.name %> </h1>
 
-<p>Twitch: <%=link_to "https://www.twitch.tv/#{@player.stream}"%></p>
+<p>Twitch: <%=link_to "https://www.twitch.tv/#{@player.stream}", "https://www.twitch.tv/#{@player.stream}"%></p>
 </div>
 <div class="races-table">
 <h1>All Races</h1>
@@ -13,7 +13,7 @@
 <th>Time</th>
 </tr>
 
-<% @races.each do |race| %>
+<% @races.sort_by {|race| race.date }.each do |race| %>
 <% game = Game.where(id: race.game_id).first %>
 <% placement = Placement.where(race_id: race.id, player_id: @player.id).first %>
 <% time = Time.at(placement.time).utc.strftime("%H:%M:%S")%>

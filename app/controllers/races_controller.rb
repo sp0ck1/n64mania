@@ -31,4 +31,23 @@ class RacesController < ApplicationController
     def random_url
       render :html => Race.all.sample.url
     end
+
+    def runback
+      race = Race.all.sample
+      winner_placement = Placement.where(race_id: race.id, placement: 1).first 
+      winner_name = Player.find(winner_placement.player_id).name
+
+      game_name = Game.find(race.game_id).name
+      comment = race.comments.sample
+      commenter = Player.find_by_id(comment.player_id).name
+      comment_text = comment.comment_text
+
+      runback = {}
+      runback[:game] = game_name
+      runback[:winner] = winner_name
+      runback[:comment] = comment_text
+      runback[:commenter] = commenter
+
+      render :json => runback
+    end
 end

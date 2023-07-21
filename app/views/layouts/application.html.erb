@@ -13,7 +13,8 @@
   <body>
     <%= yield %>
     <footer>
-    <p>N64Mania 2023. Alpha build. All content considered to be in flux. <%="#{Comment.all.sample.comment_text}"%></p>
+    <% comm = Comment.all.sample %>
+    <p>N64Mania 2023. Alpha build. All content considered to be in flux. <%= link_to "#{comm.comment_text}", Race.find(comm.race_id) %></p>
     
     
     </footer>

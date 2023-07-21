@@ -40,7 +40,7 @@ server '52.205.191.94', user: 'deploy', roles: %w{web app db}
 # Global options
 # --------------
   set :ssh_options, {
-    keys: %w(~/.ssh/jhawk-aws.pem),
+    keys: %w(~/.ssh/id_rsa),
     forward_agent: false,
     auth_methods: %w(publickey password)
   }

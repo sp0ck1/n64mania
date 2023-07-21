@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'races/random',     to: 'races#random'
     get 'games/random',     to: 'games#random'
     get 'races/random/url', to: 'races#random_url'
+    get 'races/runback',    to: 'races#runback'
   end
   resources :games
   resources :players

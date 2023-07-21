@@ -23,23 +23,28 @@ module RacetimeManager
 
       # get json for each race and convert to hash
       # "https://www.speedrunslive.com/api/pastresults/#{race.url[43,49]}")
-      hash_array = []
+      errors_array = []
+      hash_hash = {}
       
       race_array.each do |race|
         puts "Adding #{race.url[43,49]}"
-        hash_array << Util::JsonToHash.call("https://www.speedrunslive.com/api/pastresults/#{race.url[43,49]}")
+        hash_hash[race.id] = Util::JsonToHash.call("https://www.speedrunslive.com/api/pastresults/#{race.url[43,49]}")
+        
       end
 
       # go through each race hash and import_race
-      hash_array.each_with_index do |race_hash|
+      hash_hash.each_with_index do |(id, race_hash), _index|
         begin
-        puts "Attempting to add race data for SRL Race: #{race_hash["data"]["game"]["gameName"]}"
-        RacetimeManager::ImportRaceFromSrl.call(race_hash)
+        
+        name = race_hash["data"]["game"]["gameName"]
+        
+        puts "Attempting to add race data for SRL Race: #{name}"
+        RacetimeManager::ImportRaceFromSrl.call(id, race_hash)
         
         # If a name doesn't line up with something in the database, 
         # store it to be displayed at the end of the process
-        rescue
-          name = race_hash["data"]["game"]["gameName"]
+        rescue => e
+          puts e.backtrace
           puts "Could not import #{name}"
           errors_array << name
           next
