@@ -13,22 +13,24 @@
   <body>
   <nav>
 
+  <!-- https://stackoverflow.com/questions/3705898/best-way-to-add-current-class-to-nav-in-rails-3 -->
 <div class="nav-links">
-  <div class="nav-link-box">
-    <a href="/games" class="nav-link">All Games</a>
-   
-  </div><!-- nav-link-box -->
-  <div class="nav-link-box">
-    <a href="/races" class="nav-link">All Races</a>
 
-  </div><!-- nav-link-box -->
-  <div class="nav-link-box">
-    <a href="/players" class="nav-link">All Players</a>
+    <a href="/games" class="nav-link">
+    <div class="nav-link-box">All Games</div>
+    </a><!-- nav-link -->
   
-  </div><!-- nav-link-box -->
-  <div class="nav-link-box">
-    <a href="/games/unplayed" class="nav-link">All Unplayed Games</a> 
-  </div><!-- nav-link-box -->
+    <a href="/races" class="nav-link">
+    <div class="nav-link-box">All Races</div>
+    </a><!-- nav-link -->
+  
+    <a href="/players" class="nav-link">
+    <div class="nav-link-box">All Players</div>
+    </a><!-- nav-link -->
+  
+    <a href="/games/unplayed" class="nav-link">
+    <div class="nav-link-box">All Unplayed Games</div>
+    </a><!-- nav-link -->
 </div><!-- nav-links -->
 
 </nav>
