@@ -11,7 +11,29 @@
   </head>
 
   <body>
-    <%= yield %>
+  <nav>
+
+<div class="nav-links">
+  <div class="nav-link-box">
+    <a href="/games" class="nav-link">All Games</a>
+   
+  </div><!-- nav-link-box -->
+  <div class="nav-link-box">
+    <a href="/races" class="nav-link">All Races</a>
+
+  </div><!-- nav-link-box -->
+  <div class="nav-link-box">
+    <a href="/players" class="nav-link">All Players</a>
+  
+  </div><!-- nav-link-box -->
+  <div class="nav-link-box">
+    <a href="/games/unplayed" class="nav-link">All Unplayed Games</a> 
+  </div><!-- nav-link-box -->
+</div><!-- nav-links -->
+
+</nav>
+
+<%= yield %>
     <footer>
     <% comm = Comment.all.sample %>
     <p>N64Mania 2023. Alpha build. All content considered to be in flux. <%= link_to "#{comm.comment_text}", Race.find(comm.race_id) %></p>

@@ -7,7 +7,7 @@ module RacetimeManager
   class AllSrlRaceAdder < ApplicationService
   # call with RacetimeManager::AllSrlRaceAdder.call
 
-    # script to get through every n64mania race and get all URLs from racetime    
+    # Script to populate SRL races with player, comment, placement, and goal 
     def call
       
       

@@ -14,35 +14,6 @@ body {
     align-items: center;
 }
 
-.nav-links {
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2em;
-}
-
-.nav-link-count {
-    display:inherit;
-    justify-content: center;
-    text-align: center;
-}
-
-.nav-link-box {
-    
-    border-width: 2px;
-    border-color: black;
-    border-style: dashed;
-    border-radius: 10px;
-    padding: 20px;
-    min-width: 236px;
-    margin:auto;
-}
-
-.nav-link-box a {
-    display:flex;
-    justify-content: center;
-}
-
 .btn-game-search {
     background-color: white;
     height: 40px;
@@ -64,6 +35,10 @@ footer {
 a { 
     text-decoration: none;
 
+}
+
+table {
+    width:100%;
 }
 
 footer a {

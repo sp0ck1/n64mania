@@ -1,0 +1,48 @@
+
+.nav-links {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+   // margin-top: 2em; Commented when moved to top
+}
+
+.nav-link-count {
+    display:inherit;
+    justify-content: center;
+    text-align: center;
+}
+
+.nav-link-box {
+    
+    border-width: 2px;
+    border-color: black;
+    border-style: dashed;
+    border-radius: 10px;
+    padding: 20px;
+    min-width: 236px;
+    margin:auto;
+}
+
+.nav-link-box a {
+    display:flex;
+    justify-content: center;
+}
+
+nav {
+    text-shadow: -1px 1px 0 #000,
+    1px 1px 0 #000,
+   1px -1px 0 #000,
+  -1px -1px 0 #000;
+  overflow:hidden;
+  background-color: grey;
+  
+}
+
+nav a {
+    color:yellow;
+}
+
+nav a:hover {
+    color:green;
+    font-weight: unset;
+}
