@@ -162,6 +162,8 @@ module RacetimeManager
         "ClayFighter 63⅓"
       when "All Star Baseball '99"
         "All-Star Baseball 99"
+      when "Tom & Jerry in: Fists of Furry"
+        "Tom and Jerry in Fists of Furry"
       else game_name
       end
       game_name

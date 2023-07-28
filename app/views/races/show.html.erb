@@ -17,8 +17,8 @@ end
 
 <% @race.placements.each do |p|%>
     <tr>
-        <td><%=p.player.name%></td>
-        <td><%=p.time%></td>
+        <td><%=link_to p.player.name, p.player%></td>
+        <td><%= Time.at(p.time).utc.strftime("%H:%M:%S") %></td>
         <% comment = p.race.comments.where(player_id: p.player.id).first%>
         <td><%= unless comment.nil? 
             comment.comment_text
