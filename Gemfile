@@ -47,6 +47,11 @@ gem 'composite_primary_keys'
 gem 'figaro'
 gem 'listen', '~> 3.2'
 
+## OmniAuth & OmniAuth-Twitch
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-twitch'
+
 ### End Custom Dependencies ###
 
 group :development, :test do

@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   post 'game-search', to: 'pages#parse_search'
   get 'unplayed/:genre',  to: 'races#search_by_genre' # rename/reroute this endpoint
   get 'games/unplayed', to: 'games#unplayed'
+
+  # OmniAuth endpoints
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get '/login', to: 'sessions#new'
+
+
   scope :api do
     get 'games/unplayed/random',   to: 'games#random_game_name'
     get 'games/unplayed',   to: 'games#api_unplayed'
@@ -17,7 +23,9 @@ Rails.application.routes.draw do
     get 'races/random/url', to: 'races#random_url'
     get 'races/runback',    to: 'races#runback'
   end
+
   resources :games
   resources :players
   resources :races
+
 end
