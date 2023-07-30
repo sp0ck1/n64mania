@@ -1,46 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>N64Mania</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <head>
+        <title>N64Mania</title>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
 
-   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', :defer => "defer"%>
-   <%= favicon_link_tag asset_path('image-name.png') %>
-  </head>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', :defer => "defer"%>
+        <%= favicon_link_tag asset_path('image-name.png') %>
+    </head>
 
-  <body>
-  <nav>
-
-  <!-- https://stackoverflow.com/questions/3705898/best-way-to-add-current-class-to-nav-in-rails-3 -->
-<div class="nav-links">
-
-    <a href="/games" class="nav-link">
-    <div class="nav-link-box">All Games</div>
-    </a><!-- nav-link -->
-  
-    <a href="/races" class="nav-link">
-    <div class="nav-link-box">All Races</div>
-    </a><!-- nav-link -->
-  
-    <a href="/players" class="nav-link">
-    <div class="nav-link-box">All Players</div>
-    </a><!-- nav-link -->
-  
-    <a href="/games/unplayed" class="nav-link">
-    <div class="nav-link-box">All Unplayed Games</div>
-    </a><!-- nav-link -->
-</div><!-- nav-links -->
-
-</nav>
-
-<%= yield %>
-    <footer>
-    <% comm = Comment.all.sample %>
-    <p>N64Mania 2023. Alpha build. All content considered to be in flux. <%= link_to "#{comm.comment_text}", Race.find(comm.race_id) %></p>
-    
-    
-    </footer>
+    <body>
+        <nav>
+            <div class="nav-links">
+                <%= render partial: "nav-link", locals: {href_path: "/games", title: "All Games"} %> 
+                <%= render partial: "nav-link", locals: {href_path: "/races", title: "All Races"} %> 
+                <%= render partial: "nav-link", locals: {href_path: "/players", title: "All Players"} %> 
+                <%= render partial: "nav-link", locals: {href_path: "/games/unplayed", title: "All Unplayed Games"} %> 
+            </div><!-- nav-links -->
+        </nav>
+        <%= yield %>
+        <footer>
+        <% comm = Comment.all.sample %>
+        <p>N64Mania 2023. Alpha build. All content considered to be in flux. <%= link_to "#{comm.comment_text}", Race.find(comm.race_id) %></p>
+        </footer>
+        <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

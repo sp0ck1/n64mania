@@ -2,15 +2,13 @@ class PlayersController < ApplicationController
 
   def index
     player_names = []
-    @players = []
-    Player.all.each do |player|
-      player_names << player.name
-    end
-    #TODO: Sort names on Player page in alphabetical order regardless of downcase
-    player_names.sort!
+    @players = Player.all
     
-    player_names.each do |name|
-      @players << Player.find_by_name(name)
+    @players.each do |p|
+      if p.stream.nil?
+        p.stream = p.name.downcase!
+       end
+      p.stream.downcase!
     end
     
     @players 

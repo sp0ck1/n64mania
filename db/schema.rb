@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_26_224555) do
+ActiveRecord::Schema.define(version: 2023_07_30_064639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 2023_02_26_224555) do
     t.text "developer"
     t.text "genre"
     t.string "description"
-    t.boolean "has_moon"
-    t.boolean "has_cali"
+    t.string "has_moon"
+    t.string "has_cali"
     t.index ["id"], name: "game_id_unique", unique: true
   end
 
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(version: 2023_02_26_224555) do
     t.string "author"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "uid"
+    t.string "twitch_nickname"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "token"
   end
 
   add_foreign_key "comments", "players", name: "comment_player_id_fk"

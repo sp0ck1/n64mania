@@ -1,5 +1,3 @@
-<h1>All N64Mania Participants</h1>
-
 <table>
  <tr>
  <th></th>
@@ -9,7 +7,21 @@
   <th>Twitch URL</th>
   Add metadata but think about what people will be comfortable with -->
  </tr> 
- <% @players.each_with_index do |player, index| %>
+ <% 
+ @players.each do |p|
+   if p.stream.nil?
+     p.stream = p.name.downcase!
+    end
+   p.stream.downcase!
+ end
+ @players.sort_by(&:stream)
+ puts "Finished sorting players supposedly"
+ 
+ @players.each do |p|
+ puts p.stream
+ end%>
+ 
+ <% @players.sort_by(&:stream).each_with_index do |player, index| %>
  
  <td><%= index+1%></td>
   <td><%= link_to player.name, player_path(player) %></td>

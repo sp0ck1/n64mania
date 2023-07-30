@@ -21,6 +21,5 @@ class PagesController < ApplicationController
       redirect_to game_path(potential_game.first.id)
     end
   end
-
 end
 

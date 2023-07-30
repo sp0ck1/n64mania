@@ -1,0 +1,9 @@
+<% 
+controller = params[:controller]
+action = params[:action]
+class_names = class_names_selected_check(controller, action, href_path)
+%>
+
+<a href= <%=href_path%> class='<%=class_names%>' >
+  <div class="nav-link-box"> <%= title %> </div>
+  </a><!-- nav-link -->
