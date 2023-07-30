@@ -1,7 +1,6 @@
 class PlayersController < ApplicationController
 
   def index
-    player_names = []
     @players = Player.all
     
     @players.each do |p|
