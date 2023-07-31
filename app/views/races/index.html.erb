@@ -1,22 +1,3 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Date (estimated)</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @races.each do |race| %>
-      <tr>
-        <td><%= link_to Game.where(id: race.game_id).first.name, race %></td>
-        <td><%= race.date %></td>
-    
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: "games/times_raced" %>
 
 <br>

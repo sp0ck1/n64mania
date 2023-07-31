@@ -164,6 +164,8 @@ module RacetimeManager
         "All-Star Baseball 99"
       when "Tom & Jerry in: Fists of Furry"
         "Tom and Jerry in Fists of Furry"
+      when "AeroFighters Assault"
+        "Aero Fighters Assault"
       else game_name
       end
       game_name

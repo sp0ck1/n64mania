@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   resources :players
   resources :races
 
+  resources :users, except: [:new]
 end

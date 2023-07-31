@@ -7,3 +7,7 @@
 <p>Developer: <%= @developer %> </p>
 
 </div>
+
+<% if !@raced.nil? %>
+<%= render partial: "times_raced" %>
+<% end %>
