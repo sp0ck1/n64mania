@@ -6,7 +6,7 @@ class Race < ActiveRecord::Base
 
 
   def winner
-    return Player.find(Race.find(self.id).placements.find_by_placement(1).player_id)
+    return Player.find(self.placements.find_by_placement(1).player_id)
   end
 
 end

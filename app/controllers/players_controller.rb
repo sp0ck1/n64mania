@@ -9,7 +9,7 @@ class PlayersController < ApplicationController
        end
       p.stream.downcase!
     end
-    
+
     @players 
   end
   

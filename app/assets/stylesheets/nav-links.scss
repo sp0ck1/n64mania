@@ -5,6 +5,7 @@ nav {
   -1px -1px 0 #000;
   font-size: larger;
   background-color: rgb(39,57,141);
+
 }
 
 nav a {
@@ -28,6 +29,8 @@ nav a:hover {
     margin: auto;
     display: flex;
     justify-content: space-between;
+    height: 5vh;
+    min-height: 62px;
    // margin-top: 2em; Commented when moved to top
 }
 
@@ -44,8 +47,8 @@ nav a:hover {
 .nav-link-box {
     text-align: center;    
     padding: 20px;
-    min-width: 236px;
     margin:auto;
+    white-space: nowrap;
 }
 
 .nav-link-box a {
