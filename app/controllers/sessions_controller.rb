@@ -16,7 +16,13 @@ class SessionsController < ApplicationController
     session[:token] = credentials['token']
     session[:expires_at] = credentials['expires_at']
     session[:refresh_token] = credentials['refresh_token']
-    session[:user] = User.find_by_uid(session[:uid]) if session[:uid]
+    if session[:uid]
+      User.create(uid: session[:uid], token: session[:token], twitch_nickname: twitch_nickname) unless
+        session[:user] = User.find_by_uid(session[:uid]) 
+    end
+
+    binding.pry
+
 
     flash[:welcome] = "Hello, #{twitch_nickname}! You have been successfully logged in."
    
