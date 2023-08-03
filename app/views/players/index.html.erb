@@ -11,7 +11,7 @@
  <% @players.sort_by(&:stream).each_with_index do |player, index| %>
  
  <td><%= index+1%></td>
-  <td><%= link_to player.name, player_path(player) %></td>
+  <td><%= link_to player.name, player %></td>
   
  </tr>
  <% end %>

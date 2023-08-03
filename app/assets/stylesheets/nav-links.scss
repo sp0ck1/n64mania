@@ -1,23 +1,30 @@
-nav {
+nav {   
     text-shadow: -1px 1px 0 #000,
     1px 1px 0 #000,
-   1px -1px 0 #000,
-  -1px -1px 0 #000;
-  font-size: larger;
-  background-color: rgb(39,57,141);
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+    font-size: larger;
+    background-color: rgb(39,57,141);
+    width: 60vw;
+} 
 
-}
-
-nav a {
+nav a, nav button {
     color:yellow;
     margin:auto;
     width: 100%;
-}
+} 
 
-nav a:hover {
+nav a:hover, button:hover, nav form:hover {
     color:rgb(255,253,119);
     font-weight: unset;
     background-color: rgb(25, 38, 91);
+    cursor: pointer;
+}
+
+nav button {
+    background-color: inherit;
+    border:none;
+    font-size: unset;
 }
 
 .selected {
@@ -31,6 +38,7 @@ nav a:hover {
     justify-content: space-between;
     height: 5vh;
     min-height: 62px;
+    width:100%;
    // margin-top: 2em; Commented when moved to top
 }
 
@@ -45,7 +53,8 @@ nav a:hover {
 }
 
 .nav-link-box {
-    text-align: center;    
+    text-align: center;  
+    justify-content: center;  
     padding: 20px;
     margin:auto;
     white-space: nowrap;

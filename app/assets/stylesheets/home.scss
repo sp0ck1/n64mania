@@ -6,6 +6,7 @@ body {
     img {
     display: flex;
     margin: auto;
+    width: 60vw;
     }   
     .form-inline {
     margin-top: 20px;
@@ -34,6 +35,27 @@ body {
     /* background-color: rgb(236, 236, 236); */
     display: flex;
     flex-direction: column;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1;
+        visibility:visible; }
+    100% { 
+        opacity: 0; 
+        visibility: hidden;
+        
+    }
+}
+
+.fade {
+    animation: fadeOut;
+    animation-duration: 6s;
+    visibility:hidden;
+}
+
+
+.alert {
+    color:#dcdce6;
 }
 
 .flexed {

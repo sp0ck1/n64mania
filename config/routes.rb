@@ -9,10 +9,11 @@ Rails.application.routes.draw do
   get 'unplayed/:genre',  to: 'races#search_by_genre' # rename/reroute this endpoint
   get 'games/unplayed', to: 'games#unplayed'
 
-  # OmniAuth endpoints
+  # Login/Logout endpoints
   get 'auth/:provider/callback', to: 'sessions#create'
-  get '/login', to: 'sessions#new'
-
+  get 'auth/twitch', as: "twitch_login", to: "sessions#twitch_login"
+  get 'login', to: 'sessions#new'
+  delete 'logout', to: 'sessions#destroy'
 
   scope :api do
     get 'games/unplayed/random',   to: 'games#random_game_name'

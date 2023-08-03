@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("components/new-autocomplete")
 require("components/autocomplete-box")
+require("components/resizing")
 
 console.log("application.js successfully loaded");
 // Uncomment to copy all static images under ../images to the output folder and reference

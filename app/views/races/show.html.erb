@@ -1,12 +1,15 @@
 <div class="race-info">
-<% unless @race.goal.nil? 
-  goal = @race.goal
-end
-%>
-<h1><%= link_to Game.find(@race.game_id).name, @race.url %> - <%= goal %></h1>
-<p id="race-goal"> 
 
-</p>
+<%  unless @race.goal.nil? 
+        goal = @race.goal
+    end %>
+
+<%= content_tag :h1 do %> 
+
+<%= link_to(@race.game.name, Game.find(@race.game.id)) -%> - <%= link_to(goal, @race.url) -%>    
+<% end %>
+
+
 
 <table>
 <tr>
