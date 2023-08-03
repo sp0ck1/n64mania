@@ -1,15 +1,11 @@
 <div class="race-info">
 
-<%  unless @race.goal.nil? 
-        goal = @race.goal
-    end %>
+<% goal = @race.goal unless @race.goal == '' %>
 
 <%= content_tag :h1 do %> 
-
-<%= link_to(@race.game.name, Game.find(@race.game.id)) -%> - <%= link_to(goal, @race.url) -%>    
+<%= link_to(@race.game.name, Game.find(@race.game.id)) -%> - <%= link_to("Click for SRL/RTGG Page", @race.url) if goal.nil? -%> 
+<%= link_to(goal, @race.url) unless goal.nil? %>
 <% end %>
-
-
 
 <table>
 <tr>
