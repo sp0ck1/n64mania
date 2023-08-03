@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'unplayed/:genre',  to: 'races#search_by_genre' # rename/reroute this endpoint
   get 'games/unplayed', to: 'games#unplayed'
 
+
   # Login/Logout endpoints
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'login', to: 'sessions#new'

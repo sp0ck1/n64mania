@@ -1,11 +1,18 @@
 class RacesController < ApplicationController
 
     def index
-        @races = Race.all.sort_by { |race| race.date }
+      @page_title = "All N64Mania Races | N64Mania"
+      @page_description = "All N64Mania races, including runbacks."
+      @races = Race.all.sort_by { |race| race.date }
     end
 
     def show
+
       @race = Race.find(params[:id])
+      race_name = @race.game.name
+      @page_title = "#{race_name} | N64Mania"
+      @page_description = "#{race_name}'s N64Mania race page."
+      
     end
 
     def search_by_genre

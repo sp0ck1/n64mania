@@ -6,6 +6,9 @@ class PagesController < ApplicationController
     @games = Game.pluck(:name).sort
     @players = Player.all
     @unplayed = Game.unplayed
+
+    @page_title = "N64Mania"
+    @page_description = "N64Mania home page."
   end  
 
   # Parses search from the search bar on the homepage. 

@@ -21,9 +21,6 @@ class SessionsController < ApplicationController
         session[:user] = User.find_by_uid(session[:uid]) 
     end
 
-    binding.pry
-
-
     flash[:welcome] = "Hello, #{twitch_nickname}! You have been successfully logged in."
    
     player = Player.find_by_name(twitch_nickname)

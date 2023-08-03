@@ -2,6 +2,7 @@ class GamesController < ApplicationController
 
     def index
         @games = Game.all.sort_by { |game| game.name }
+        @page_title = "All Games | N64Mania"
     end
 
     def show
@@ -13,14 +14,15 @@ class GamesController < ApplicationController
         @developer = @game.developer
         @year = @game.release_year
 
+        @page_title = "#{@game.name} | N64Mania"
+        @page_description = "#{@game.name} game page for N64Mania."
 
     end
 
-    def test
-        puts "It's real!"
-        render json: Game.find(params[:id])
+    def unplayed
+      @page_title = "All Unplayed Games | N64Mania"
     end
-
+    
     def api_unplayed # Include year in this json
         race_ids = []
         Race.all.each do |race|
