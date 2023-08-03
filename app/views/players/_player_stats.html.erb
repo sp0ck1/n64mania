@@ -1,4 +1,4 @@
-<table>
+<table class="stats-table">
 <tr>
 <th>Races</th>
 <th>Wins</th>
@@ -10,14 +10,22 @@
 <% @player.placements.each {|p| total_time += p.time} %>
 <% total_time = ActiveSupport::Duration.build(total_time).parts %>
 <% weeks = total_time[:weeks] %>
-<% days = total_time[:days] %>
-<% hours = total_time[:hours]%>
-<% minutes = total_time[:minutes] %>
-<% seconds = total_time[:seconds] %>
+
+<% 
+weeks = weeks == 1 ? "#{weeks} week" : "#{weeks} weeks"
+days = total_time[:days]
+days = days == 1 ? "#{days} day" : "#{days} days"
+hours = total_time[:hours]
+hours = hours == 1 ? "#{hours} hour" : "#{hours} hours"
+minutes = total_time[:minutes]
+minutes = minutes == 1 ? "#{minutes} minute" : "#{minutes} minutes"
+seconds = total_time[:seconds]
+seconds = seconds == 1 ? "#{seconds} second" : "#{seconds} seconds"
+%>
 
  <tr>
  <td><%= @player.placements.count %></td>
  <td><%= Placement.where(player_id: @player.id, placement: 1).count%></td>
  <td><%= @player.placements.where(time: 0).count %></td>
- <td><%= "#{weeks} weeks, #{days} days, #{hours} hour(s), #{minutes} minute(s), #{seconds} second(s)" %></td>
+ <td><%= "#{weeks}, #{days}, #{hours}, #{minutes}, #{seconds}" %></td>
  </tr>
