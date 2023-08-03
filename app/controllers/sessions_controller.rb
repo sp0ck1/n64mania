@@ -43,7 +43,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:uid] = nil
     flash[:success] = "You have logged out"
-    binding.pry
+    
     redirect_to request.referrer
   end
 end # Class end

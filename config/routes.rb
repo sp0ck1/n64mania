@@ -4,14 +4,15 @@ Rails.application.routes.draw do
   # method 'views/:etc', to 'controller#method'
   root 'pages#index'
   
+
   post 'parse_input', to: 'pages#parse_input'
   post 'game-search', to: 'pages#parse_search'
+  
   get 'unplayed/:genre',  to: 'races#search_by_genre' # rename/reroute this endpoint
   get 'games/unplayed', to: 'games#unplayed'
 
   # Login/Logout endpoints
   get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/twitch', as: "twitch_login", to: "sessions#twitch_login"
   get 'login', to: 'sessions#new'
   delete 'logout', to: 'sessions#destroy'
 
