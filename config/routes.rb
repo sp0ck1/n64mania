@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # method 'views/:etc', to 'controller#method'
   root 'pages#index'
   
-
+  # Search box endpoints
   post 'parse_input', to: 'pages#parse_input'
   post 'game-search', to: 'pages#parse_search'
   
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   delete 'logout', to: 'sessions#destroy'
 
+  # JenniferHawk API call endpoints
   scope :api do
     get 'games/unplayed/random',   to: 'games#random_game_name'
     get 'games/unplayed',   to: 'games#api_unplayed'
@@ -26,6 +27,8 @@ Rails.application.routes.draw do
     get 'races/random/url', to: 'races#random_url'
     get 'races/runback',    to: 'races#runback'
   end
+
+  get 'portal', to: 'portal#index'
 
   resources :games
   resources :players
