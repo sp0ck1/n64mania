@@ -25,7 +25,7 @@
                 
                 <% unless logged_in? %> <!-- If Logged Out -->
                 <%= form_tag('/auth/twitch', method: 'post', class: 'nav-links ', data: {turbo: false}) do %>
-                    <button type='submit' class="nav-links nav-link-box twitch-button">Login with Twitch</button>
+                    <%= button_tag "Login with Twitch", class: "nav-links nav-link-box twitch-button" %>
                     <% end %>
                 <% else %> <!-- If Logged In -->
                     <%= link_to logout_path, class: "nav-link", method: "delete" do %>
@@ -40,7 +40,7 @@
            
             <!-- Style these for individual alert types; at least style them for one alert type -->
             <% flash.each do |name, msg| %>
-                <div class="alert alert-<%= name%> alert-dismissible fade show" role="alert">
+                <div class="alert alert-<%= name %> alert-dismissible fade show" role="alert">
                     <h6><strong><%= msg %></strong></h6>
                     
                 </div>

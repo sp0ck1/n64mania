@@ -29,7 +29,8 @@ class SessionsController < ApplicationController
     end
 
     if player
-      redirect_to player_path(player.id) # Send to their page if they are recognized
+      # Send them back where they came from
+      redirect_to session[:preauth_referrer]
     else 
       
       render "players/index" # If no associated player with twitch name, need to ask user who they are. Need easy way to add in player id/user id afterward

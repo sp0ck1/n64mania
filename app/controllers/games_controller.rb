@@ -6,7 +6,7 @@ class GamesController < ApplicationController
     end
 
     def show
-        
+        params
         @game = Game.find(params[:id])
         @races = Race.where(game_id: @game.id)
         @raced = @races.empty? ? "Not Raced" : "Raced"
