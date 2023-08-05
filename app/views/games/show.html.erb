@@ -3,9 +3,16 @@
 
 <p>Status: <%= @raced %> </p>
 <p>Year: <%= @year %> </p>
-<p>Published: <%= @publisher %> </p>
+<p>Publisher: <%= @publisher %> </p>
 <p>Developer: <%= @developer %> </p>
 
+<%= form_tag(start_race_path) do %>
+  <%= text_field_tag 'goal', "Enter Race Goal" %>
+  <%= hidden_field_tag 'name', @game.name %>
+  <%= hidden_field_tag 'game_id', @game.id %>
+  
+  <%= button_tag "Start a Race" %>
+<% end %>
 
 <% if !@raced.nil? %>
 <%= render partial: "times_raced" %>

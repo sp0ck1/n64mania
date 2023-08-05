@@ -9,9 +9,9 @@
 <% total_time = 0 %>
 <% @player.placements.each {|p| total_time += p.time} %>
 <% total_time = ActiveSupport::Duration.build(total_time).parts %>
-<% weeks = total_time[:weeks] %>
 
 <% 
+weeks = total_time[:weeks]
 weeks = weeks == 1 ? "#{weeks} week" : "#{weeks} weeks"
 days = total_time[:days]
 days = days == 1 ? "#{days} day" : "#{days} days"

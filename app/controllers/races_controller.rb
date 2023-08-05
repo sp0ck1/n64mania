@@ -49,12 +49,12 @@ class RacesController < ApplicationController
       commenter = Player.find_by_id(comment.player_id).name
       comment_text = comment.comment_text
 
-      runback = {}
-      runback[:game] = game_name
-      runback[:winner] = winner_name
-      runback[:comment] = comment_text
-      runback[:commenter] = commenter
-
+      runback = {
+        :game      => game_name,
+        :winner    => winner_name,
+        :comment   => comment_text,
+        :commenter => commenter
+      }
       render :json => runback
     end
 end

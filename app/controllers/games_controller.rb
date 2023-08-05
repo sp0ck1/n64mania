@@ -41,5 +41,11 @@ class GamesController < ApplicationController
       render html: random_game
     end
       
+    def start_race
+
+      goal = params[:goal]
+      game_id = params[:game_id]
+      redirect_to Game.find(game_id).start_race(goal)
+    end
     
 end

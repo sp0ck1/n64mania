@@ -1,12 +1,20 @@
 <table>
+
  <tr>
-  <th>Name</th>
-  
+<th>Game Name</th>
+<th>Publisher</th>
+<th>Developer</th>
+<th>Release Year (NA)</th>
+<th>Genre</th>
  </tr>
+
  <% @games.each do |game| %>
- <% j = game.id %>
  <tr>
   <td><%= link_to game.name, game_path(game) %></td>
+  <td><%=game.publisher%></td>
+  <td><%=game.developer%></td>
+  <td><%=game.release_year%></td>
+  <td><%=game.genre%></td> <!-- Would like to have clickable genres eventually -->
   
  </tr>
  <% end %>
