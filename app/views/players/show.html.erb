@@ -1,12 +1,16 @@
-<div class="players-info">
-<h1> <%= @player.name %> </h1>
+<%= content_tag(:div, class: "players-info") do %>
+<%= content_tag(:div, class: "player-header-container") do %>
+<%= content_tag(:h1, @player.name, class: "player-header") %>
 
-<p>Twitch: <%=link_to "https://www.twitch.tv/#{@player.stream}", "https://www.twitch.tv/#{@player.stream}"%></p>
-</div>
+<%= content_tag(:p, class: "twitch-link") do -%>
+    <%= link_to "Twitch", "https://www.twitch.tv/#{@player.stream}" %>
+    <% end %>
+    <% end %>
+    <%= render partial: "player_stats" %>
 
-<%= render partial: "player_stats"%>
-<div class="races-table">
-<h1>All Races</h1>
+<% end %>
+<%= content_tag(:div, class: "races-table") do %>
+<%= content_tag(:h1, "All Races") %>
+<%= render partial: "raced_table" %>
+<% end %>
 
-<%= render partial: "raced_table" %> 
-</div>

@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.players-info {
+    display: flex;
+}
+
 #player-race-placement { 
     text-align: center;
 }
@@ -16,5 +20,25 @@ table td {
 }
 
 .stats-table {
-    margin-bottom: 8vh;
+    margin-left: auto;
+    width: 59%;
+    background-color: transparent;
+    tr, th, tr:nth-child(odd), tr:nth-child(even), td, tr:hover, tr:nth-child(even):hover {
+        background-color: transparent;
+        text-decoration: none;
+    }
+}
+
+.twitch-link {
+   color:purple;
+   margin-top:-20px; 
+   a {
+    color:rgb(255,238,105);
+} a:hover {
+    text-decoration: underline;
+}
+} 
+
+.player-header-container {
+    width: 20%;
 }

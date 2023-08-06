@@ -11,9 +11,9 @@
   <%= hidden_field_tag 'name', @game.name %>
   <%= hidden_field_tag 'game_id', @game.id %>
   <%  if logged_in?  %>
-  <%= button_tag "Start a race on Racetime.gg" %>
+  <%= button_tag "Start a race of #{@game.name} on Racetime.gg", data: { prompt: "test" } %>
   <%    else %>
-  <%= button_tag "You must be logged in to start a race on Racetime.gg via JenniferHawk", disabled: true %>
+  <%= content_tag(:div, "Login via Twitch to start races on Racetime.gg", class: "simulated-button disabled-button") %>
   <% end %>
 <% end %>
 

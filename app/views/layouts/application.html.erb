@@ -14,8 +14,9 @@
         
         <div class="header-bar left"></div>
         <div class="header-bar right"></div>
+             
         <div id="confined-body">
-            <nav>
+      <nav>
             <div class="nav-links">
            
                 <%= render partial: "nav-link", locals: {href_path: "/games", title: "All Games"} %> 
@@ -36,23 +37,23 @@
                 <% end %> 
                 
             </div><!-- nav-links -->
-            </nav>
+            </nav> 
            
             <!-- Style these for individual alert types; at least style them for one alert type -->
             <% flash.each do |name, msg| %>
                 <div class="alert alert-<%= name %> alert-dismissible fade show" role="alert">
                     <h6><strong><%= msg %></strong></h6>
-                    
                 </div>
+                
             <% end %>
             <%= yield %>
 
-            <footer>
+
+        </div>
+                   <footer>
             <% comm = Comment.all.sample %>
             <p>N64Mania 2023. Alpha build. All content considered to be in flux. <%= link_to "#{comm.comment_text}", Race.find(comm.race_id) %></p>
             </footer>
-        </div>
-       
         
         <%= debug(params) if Rails.env.development? %>
         
