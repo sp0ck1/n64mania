@@ -58,7 +58,7 @@ module RacetimeManager
 
   rescue => e
     puts e
-    binding.pry
+    # binding.pry
     end
   end
   end

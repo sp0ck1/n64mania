@@ -3,8 +3,6 @@ require 'uri'
 require 'net/http'
 require 'pry'
 
-###### TODO: Add races for multiples of games, like Winback and Paper Mario. Map Paper Marios to 
-
 module RacetimeManager
   class ImportRace < ApplicationService
     # Only works for Racetime.gg races. Do not rename. 
@@ -25,7 +23,7 @@ module RacetimeManager
         game_name = validate_name(@race_hash["goal"]["name"])
 
         game =  Game.where('name ILIKE ?', "%#{game_name}%").first # Being Proper probably means breaking this out into a method
-        binding.pry
+        # binding.pry
         unless game.id.nil?
           unless Race.where(duration: race_duration,game_id: game.id).exists? # will only import races that do not already exist
        

@@ -72,7 +72,7 @@ module RacetimeManager
         end
 
       rescue => e
-        binding.pry
+        # binding.pry
       end
     end
 
