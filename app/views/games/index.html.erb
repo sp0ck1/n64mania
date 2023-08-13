@@ -1,33 +1,9 @@
 <table>
-
- <tr>
-<th>Game Name</th>
-<th>Publisher</th>
-<th>Developer</th>
-<th>Release Year (NA)</th>
-<th>Genre</th>
- </tr>
+<%= render partial: 'games_table_header' %>
 
  <% @games.each do |game| %>
 
-
- <tr>
-  <td><%= link_to game.name, game_path(game) %></td>
-  <td><%=game.publisher%></td>
-  <td><%=game.developer%></td>
-  <td><%=game.release_year%></td>
-   <td>
-   <% s = game.genres.size%>
-    <% game.genres.each_with_index do |genre, index| %>
-    <span>
-    <%= link_to genre.name, genre_path(genre) -%>
-    <% unless s == index+1 %>
-    <p> | </p>
-     <% end %>
-    </span> 
-    <% end %>
-  </td>
- </tr>
+<%= render partial: 'games_table_body', locals: {game: game} %>
 
  <% end %>
 </table>

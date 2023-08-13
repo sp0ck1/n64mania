@@ -1,0 +1,12 @@
+ <tr>
+  <td><%= link_to game.name, game_path(game) %></td>
+  <td><%=game.publisher%></td>
+  <td><%=game.developer%></td>
+  <td><%=game.release_year%></td>
+  <%= render partial: 'games/genre_links', locals: {game: game} %>
+  <% if game.raced? %>
+  <td class="greyed">Raced</td>
+  <% else %>
+  <td>Unraced</td>
+  <% end %>
+ </tr>
