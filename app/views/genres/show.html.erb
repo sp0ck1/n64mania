@@ -8,6 +8,7 @@
 <th>Developer</th>
 <th>Release Year (NA)</th>
 <th>Genre</th>
+<th>Raced?</th>
  </tr>
 
  <% @genre.games.each do |game| %>
@@ -18,6 +19,11 @@
   <td><%= game.developer %></td>
   <td><%= game.release_year %></td>
   <%= render partial: "games/genre_links", locals: {game: game} %>
+  <% if game.raced? %>
+  <td style="color: rgb(151,147,147);">Raced</td>
+  <% else %>
+  <td>Unraced</td>
+  <% end %>
  </tr>
 
  <% end %>
