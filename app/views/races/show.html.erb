@@ -2,9 +2,12 @@
 
 <% goal = @race.goal unless @race.goal == '' %>
 
-<%= content_tag :h1 do %> 
-<%= link_to(@race.game.name, Game.find(@race.game.id)) -%> - <%= link_to("Click for SRL/RTGG Page", @race.url) if goal.nil? -%> 
-<%= link_to(goal, @race.url) unless goal.nil? %>
+<%= content_tag :h1, class: "race-header" do %> 
+<%= link_to(@race.game.name, Game.find(@race.game.id), id: "race-game-name") -%> - <%= link_to("Click for SRL/RTGG Page", @race.url, id: "race-game-name") if goal.nil? -%> 
+<%= link_to(goal, @race.url, id: "race-goal") unless goal.nil? -%>
+<% date = @race.date %>
+<% j = date.strftime("%A") + date.strftime(", %B") + date.strftime(" %e") + date.strftime(", %Y")%>
+<%= content_tag :div, j, id: "race-date" -%>
 <% end %>
 
 <table>

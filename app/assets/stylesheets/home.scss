@@ -75,6 +75,19 @@ body {
     margin-left: 1px;
 }
 
+body {
+    background-color:rgb(22,22,22);
+    color: rgb(220,220,230);
+}
+
+h1 a {
+    color: rgb(220,220,230);
+}
+
+h1 a:hover {
+    color: rgb(240,240,240);
+}
+
 footer {
     display:flex;
     text-align: center;

@@ -8,10 +8,12 @@ nav {
     width: 60vw;
 } 
 
+.nav-links {   
+    display: flex;
+}
+
 nav a, nav button {
     color:yellow;
-    margin:auto;
-    width: 100%;
 } 
 
 nav a:hover, button:hover, nav form:hover {
@@ -32,20 +34,6 @@ nav button {
     background-color: rgb(25, 38, 91);
 }
 
-.nav-links {
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    // height: 5vh;
-    min-height: 62px;
-    width:100%;
-   // margin-top: 2em; Commented when moved to top
-}
-
-// .nav-link-box:hover {
-//     background-color: white;
-// }
-
 .nav-link-count {
     display:inherit;
     justify-content: center;
@@ -54,8 +42,7 @@ nav button {
 
 .nav-link-box {
     text-align: center;  
-    justify-content: center;  
-    padding: 20px;
+    padding: 1.25rem 2.5rem;
     margin:auto;
     white-space: nowrap;
 }
@@ -65,3 +52,6 @@ nav button {
     justify-content: center;
 }
 
+#twitch-login {
+    margin-left: auto;
+}

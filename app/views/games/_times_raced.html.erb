@@ -21,7 +21,7 @@
  <tr>
   <td><%= link_to game.name, race_path(race) %></td>
   <td><%= date %></td>
-  <td><%= race.placements.count %></th>
+  <td><%= race.players.count %></th>
   <td><%= link_to race.winner.name, race.winner %></th>
  </tr>
  <% end %>

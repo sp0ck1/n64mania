@@ -22,7 +22,7 @@ class RacesController < ApplicationController
         race_game_ids << race.game_id
       end
       Game.all.each do |game|
-        if game.genre.downcase.include? params[:genre]  
+        if game.pipe_split_genres.downcase.include? params[:genre]  
           unless race_game_ids.include? game.id   
             racing_games[game.id] = game.name      
           end  

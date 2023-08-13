@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        
+        <% # Set something to adjust the CSS on every page based on session[:darkmode?] %>
         <div class="header-bar left"></div>
         <div class="header-bar right"></div>
              
@@ -19,17 +19,17 @@
       <nav>
             <div class="nav-links">
            
-                <%= render partial: "nav-link", locals: {href_path: "/games", title: "All Games"} %> 
-                <%= render partial: "nav-link", locals: {href_path: "/races", title: "All Races"} %> 
-                <%= render partial: "nav-link", locals: {href_path: "/players", title: "All Players"} %> 
-                <%= render partial: "nav-link", locals: {href_path: "/games/unplayed", title: "All Unplayed Games"} %>
+                <%= render partial: "nav-link", locals: {href_path: "/games", title: "N64 Games"} %> 
+                <%= render partial: "nav-link", locals: {href_path: "/races", title: "N64Mania Races"} %> 
+                <%= render partial: "nav-link", locals: {href_path: "/players", title: "Players"} %> 
+                <%= render partial: "nav-link", locals: {href_path: "/games/unplayed", title: "Unplayed Games"} %>
                 
                 <% unless logged_in? %> <!-- If Logged Out -->
-                <%= form_tag('/auth/twitch', method: 'post', class: 'nav-links ', data: {turbo: false}) do %>
+                <%= form_tag('/auth/twitch', method: 'post', class: 'nav-links', id: 'twitch-login', data: {turbo: false}) do %>
                     <%= button_tag "Login with Twitch", class: "nav-links nav-link-box twitch-button" %>
                     <% end %>
                 <% else %> <!-- If Logged In -->
-                    <%= link_to logout_path, class: "nav-link", method: "delete" do %>
+                    <%= link_to logout_path, class: "nav-link", id: 'twitch-login', method: "delete" do %>
                         
                         <%= content_tag(:div, "Log Out", class: "nav-link-box") %>
                     <% end %>
@@ -38,7 +38,7 @@
                 
             </div><!-- nav-links -->
             </nav> 
-           
+        <div id="inner-confined-body">
             <!-- Style these for individual alert types; at least style them for one alert type -->
             <% flash.each do |name, msg| %>
                 <div class="alert alert-<%= name %> alert-dismissible fade show" role="alert">
@@ -50,9 +50,10 @@
 
 
         </div>
-                   <footer>
-            <% comm = Comment.all.sample %>
-            <p>N64Mania 2023. Alpha build. All content considered to be in flux. <%= link_to "#{comm.comment_text}", Race.find(comm.race_id) %></p>
+        </div>
+            <footer>
+                <% comm = Comment.all.sample %>
+                <p>N64Mania 2023. Alpha build. All content considered to be in flux. <%= link_to "#{comm.comment_text}", Race.find(comm.race_id) %></p>
             </footer>
         
         <%= debug(params) if Rails.env.development? %>

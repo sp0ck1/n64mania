@@ -11,7 +11,7 @@
  <tr>
   <td><%= j %></td>
   <td><%= link_to game.name, game_path(game) %></td>
-  <td><%= game.genre%>
+  <%= render partial: "genre_links", locals: {game: game} %>
  </tr>
  <% end %>
 </table>

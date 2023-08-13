@@ -7,12 +7,20 @@
 <p>Developer: <%= @developer %> </p>
 
 <%= form_tag(start_race_path) do %>
-  <%= text_field_tag 'goal', "Enter Race Goal" %>
+<%= label_tag 'goal', "Race Goal" %>
+<%= content_tag(:p, "Enter a goal for #{@game.name}") %>
+  <%= text_field_tag 'goal' %>
   <%= hidden_field_tag 'name', @game.name %>
   <%= hidden_field_tag 'game_id', @game.id %>
   <%  if logged_in?  %>
-  <%= button_tag "Start a race of #{@game.name} on Racetime.gg", data: { prompt: "test" } %>
+    <%  if @game.raced? %>
+    <!-- Move rt.gg race stuff and apply style to label 
+        Stop text box from appearing if not logged in -->
+        <%= button_tag "Start a race of #{@game.name} on Racetime.gg" %>
   <%    else %>
+    <%= button_tag "Enter a goal to start a race of #{@game.name} on Racetime.gg" %>
+    <% end %>
+    <% else %>
   <%= content_tag(:div, "Login via Twitch to start races on Racetime.gg", class: "simulated-button disabled-button") %>
   <% end %>
 <% end %>

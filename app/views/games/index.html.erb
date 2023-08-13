@@ -9,13 +9,25 @@
  </tr>
 
  <% @games.each do |game| %>
+
+
  <tr>
   <td><%= link_to game.name, game_path(game) %></td>
   <td><%=game.publisher%></td>
   <td><%=game.developer%></td>
   <td><%=game.release_year%></td>
-  <td><%=game.genre%></td> <!-- Would like to have clickable genres eventually -->
-  
+   <td>
+   <% s = game.genres.size%>
+    <% game.genres.each_with_index do |genre, index| %>
+    <span>
+    <%= link_to genre.name, genre_path(genre) -%>
+    <% unless s == index+1 %>
+    <p> | </p>
+     <% end %>
+    </span> 
+    <% end %>
+  </td>
  </tr>
+
  <% end %>
 </table>

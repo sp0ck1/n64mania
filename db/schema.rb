@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_30_064639) do
+ActiveRecord::Schema.define(version: 2023_08_12_061044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,16 +21,29 @@ ActiveRecord::Schema.define(version: 2023_07_30_064639) do
     t.text "comment_text"
   end
 
+  create_table "game_genres", id: false, force: :cascade do |t|
+    t.bigint "game_id"
+    t.bigint "genre_id"
+    t.index ["game_id"], name: "index_game_genres_on_game_id"
+    t.index ["genre_id"], name: "index_game_genres_on_genre_id"
+  end
+
   create_table "games", id: :integer, limit: 2, default: nil, force: :cascade do |t|
     t.text "name", null: false
     t.integer "release_year", limit: 2
     t.text "publisher"
     t.text "developer"
-    t.text "genre"
     t.string "description"
     t.string "has_moon"
     t.string "has_cali"
     t.index ["id"], name: "game_id_unique", unique: true
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.index ["name"], name: "name_uniqueness", unique: true
   end
 
   create_table "glossaries", force: :cascade do |t|

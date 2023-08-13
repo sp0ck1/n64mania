@@ -24,8 +24,8 @@ module RacetimeManager
 
         game_name = validate_name(@race_hash["goal"]["name"])
 
-        game = Game.where('name ILIKE ?', "%#{game_name}%").first # Being Proper probably means breaking this out into a method
-        
+        game =  Game.where('name ILIKE ?', "%#{game_name}%").first # Being Proper probably means breaking this out into a method
+        binding.pry
         unless game.id.nil?
           unless Race.where(duration: race_duration,game_id: game.id).exists? # will only import races that do not already exist
        
@@ -97,6 +97,7 @@ module RacetimeManager
           placements_arr.each { |placement| placement.save! }
 
         else raise "Game #{game_name} not found! Game not imported."
+          
         end
       end# comments also have to be done as their own method # end unless
 

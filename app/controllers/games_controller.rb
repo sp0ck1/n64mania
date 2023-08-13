@@ -1,5 +1,11 @@
 class GamesController < ApplicationController
 
+  # select distinct unnest(string_to_array(genre, ' | ')) as c from games order by c;
+  # ActiveRecord::Base.connection.execute("select distinct unnest(string_to_array(genre, ' | ')) as c from games order by c;")
+  # Get list of distinct genres
+
+
+
     def index
         @games = Game.all.sort_by { |game| game.name }
         @page_title = "All Games | N64Mania"
@@ -45,7 +51,9 @@ class GamesController < ApplicationController
 
       goal = params[:goal]
       game_id = params[:game_id]
-      redirect_to Game.find(game_id).start_race(goal)
+      redirect_to Game.find(game_id).start_race_with_goal(goal)
     end
+
+    
     
 end

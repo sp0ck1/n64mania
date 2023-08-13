@@ -1,0 +1,65 @@
+td span p {
+    display: inline;
+}
+
+tr:hover {
+
+    /* Didn't need here, but this is how you do pseudo-elements and images in scss + rails
+    // &:before {
+    //     content: image-url('n64-128.png');
+    //     display: inline-block;
+    //     width: 15px;
+    //     height: 15px;
+    //     margin-right: 5px; */
+    // }
+}   
+
+
+
+tbody a {
+    color:rgb(255, 253, 119);
+    &:hover {
+        text-decoration: underline;
+    
+    }
+}
+
+
+th.top-left {
+    border-top-left-radius: 10px;
+}
+
+th.top-right {
+    border-top-right-radius: 10px;
+}
+table td {
+    padding-top: 5px;
+    border:none;
+    text-align: center;
+}
+
+td {
+    padding-left:5px;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(32,33,36);
+    color:white;
+} 
+
+tr:nth-child(odd) {
+    background-color:rgb(42,43,46);
+    color:white;
+}
+
+tr:hover {
+    background-color: rgb(42, 47, 63);
+}
+
+th {
+    background-color:rgb(52,53,56);
+}
+
+table p {
+    display:inline;
+}

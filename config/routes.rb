@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   # Search box endpoints
   post 'parse_input', to: 'pages#parse_input'
   post 'game-search', to: 'pages#parse_search'
-  
 
   get 'unplayed/:genre',  to: 'races#search_by_genre' # rename/reroute this endpoint
   get 'games/unplayed', to: 'games#unplayed'
@@ -31,9 +30,13 @@ Rails.application.routes.draw do
 
   get 'portal', to: 'portal#index'
 
+
+
   resources :games
   resources :players
   resources :races
 
   resources :users, except: [:new]
+  resources :genres, except: [:edit, :new, :update]
+  
 end

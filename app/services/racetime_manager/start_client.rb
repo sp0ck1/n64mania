@@ -17,7 +17,7 @@ module RacetimeManager
       }
       res = Net::HTTP.post_form(uri, params)
       ENV["rtgg_token"] = JSON.parse(res.body)["access_token"]
-      puts "rtgg_token: #{ENV['rtgg_token']}"
+      puts "Racetime.gg connection has been established."
     end
   end
 end
