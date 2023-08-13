@@ -5,8 +5,8 @@
   <td><%=game.release_year%></td>
   <%= render partial: 'games/genre_links', locals: {game: game} %>
   <% if game.raced? %>
-  <td class="greyed">Raced</td>
+  <td class="greyed">Played</td>
   <% else %>
-  <td>Unraced</td>
+  <td>Unplayed</td>
   <% end %>
  </tr>
