@@ -6,9 +6,9 @@ class PlayersController < ApplicationController
     
     @players.each do |p|
       if p.stream.nil?
-        p.stream = p.name.downcase!
+        p.stream = p.name
        end
-      p.stream.downcase!
+      
     end
 
     @players 

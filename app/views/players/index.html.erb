@@ -9,12 +9,14 @@
  </tr> 
  
  <% @players.sort_by{|player| -player.races.size}.each_with_index do |player, index| %>
-  
+  <% begin %>
   <td><%= link_to player.name, player %></td>
   <td><p><%= player.races.size %></p> </td>
   <% their_last_race = player.races.order(:date).last %>
   <td><%= link_to "#{their_last_race.game.name}", their_last_race %> </td>
-  
+  <% rescue %>
+  <% binding.pry%>
+  <% end %>
  </tr>
  <% end %>
 </table>

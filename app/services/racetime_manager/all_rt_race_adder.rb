@@ -18,7 +18,7 @@ module RacetimeManager
       # go through each race hash and import_race
 
       hash_array = []
-      errors_array = []
+      errors_hash = {}
       initial_result = Util::JsonToHash.call("https://racetime.gg/n64mania/races/data?show_entrants=1")
       num_pages = initial_result["num_pages"]
 
@@ -37,14 +37,15 @@ module RacetimeManager
         
         # If a name doesn't line up with something in the database, 
         # store it to be displayed at the end of the process
-        rescue
+        rescue => e
+          puts e.message
           name = race_hash["goal"]["name"]
           puts "Could not import #{name}"
-          errors_array << name
+          errors_array[name] << e.message
           next
         end
       end
-      errors_array.sort.each { |error| puts error }
+      errors_array.sort.each { |game, message| puts "#{game}: #{message} }
     end
 
 

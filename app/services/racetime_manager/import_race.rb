@@ -24,8 +24,8 @@ module RacetimeManager
 
         game =  Game.where('name ILIKE ?', "%#{game_name}%").first # Being Proper probably means breaking this out into a method
         # binding.pry
-        unless game.id.nil?
-          unless Race.where(duration: race_duration,game_id: game.id).exists? # will only import races that do not already exist
+      unless game.id.nil?
+        unless Race.where(duration: race_duration,game_id: game.id).exists? # will only import races that do not already exist
        
           # Handle race
           game_id = game.id
@@ -51,11 +51,12 @@ module RacetimeManager
             plain_name = user["name"]
             twitch_name = user["twitch_name"]
 
-            player = Player.where(stream: twitch_name).first # If stream = nil, defaults to first nil stream. Cannot add new players this way if they do not have a stream. TODO!!!!
+            player = Player.where(name: plain_name).first # If stream = nil, defaults to first nil stream. Cannot add new players this way if they do not have a stream. TODO!!!!
           
             # Handle players
             # It's fine if this happens and then the script fails, because it will just get the player next time.
             if player.nil?
+              puts "Adding player #{plain_name}"
               new_player = Player.new
               new_player.name = plain_name
               new_player.stream = twitch_name
@@ -64,7 +65,7 @@ module RacetimeManager
             end
 
             # Handle comments
-            player_id = Player.where(stream: twitch_name).first.id
+            player_id = Player.where(name: plain_name).first.id
             
             placement_int = entrant["place"].nil? ? 0 : entrant["place"] 
             if entrant["has_comment"]
@@ -88,21 +89,22 @@ module RacetimeManager
             # Common parlance refers to this as one's "time," but the length of the whole race is the duration for the purposes of the Race model.
             placement.time = iso8601_to_seconds(entrant["finish_time"]) unless placement.placement == 0
             placements_arr << placement
-            end
+          end
 
           new_race.save!
           comments_arr.each { |comment| comment.save! }
           placements_arr.each { |placement| placement.save! }
 
-        else raise "Game #{game_name} not found! Game not imported."
+        else puts "#{game_name} race of duration #{race_duration} already exists! Skipping ..."
           
         end
-      end# comments also have to be done as their own method # end unless
+      end # end unless game.id.nil?
 
-    rescue
+    rescue => e
+      puts e.message
       raise "Exception in race importer! Could not import #{@race_hash["url"]}"
     ensure
-      puts "Race import complete"
+      puts "#{game_name} import complete"
     end
     end # end def
 

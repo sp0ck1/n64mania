@@ -3,7 +3,7 @@
 <%= content_tag(:h1, @player.name, class: "player-header") %>
 
 <%= content_tag(:p, class: "twitch-link") do -%>
-    <%= link_to "Twitch", "https://www.twitch.tv/#{@player.stream}" %>
+    <%= link_to "Twitch", "https://www.twitch.tv/#{@player.stream}" if @player.stream %>
     <% end %>
     <% end %>
     <%= render partial: "player_stats" %>
