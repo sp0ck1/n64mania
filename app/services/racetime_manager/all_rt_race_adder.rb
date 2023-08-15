@@ -41,7 +41,7 @@ module RacetimeManager
           puts e.message
           name = race_hash["goal"]["name"]
           puts "Could not import #{name}"
-          errors_hash[name] << e.message
+          errors_hash[name] = e.message
           next
         end
       end

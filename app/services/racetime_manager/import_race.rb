@@ -169,6 +169,8 @@ module RacetimeManager
         "Aero Fighters Assault"
       when "San Francisco Rush: Extreme Racing USA"
         "San Francisco Rush: Extreme Racing"
+      when "Madden '99"
+        "Madden NFL 99"
       else game_name
       end
       game_name
