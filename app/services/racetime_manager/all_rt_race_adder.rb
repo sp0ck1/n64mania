@@ -41,11 +41,11 @@ module RacetimeManager
           puts e.message
           name = race_hash["goal"]["name"]
           puts "Could not import #{name}"
-          errors_array[name] << e.message
+          errors_hash[name] << e.message
           next
         end
       end
-      errors_array.sort.each { |game, message| puts "#{game}: #{message}" }
+      errors_hash.sort.each { |game, message| puts "#{game}: #{message}" }
     end
 
 

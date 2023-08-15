@@ -167,6 +167,8 @@ module RacetimeManager
         "Tom and Jerry in Fists of Furry"
       when "AeroFighters Assault"
         "Aero Fighters Assault"
+      when "San Francisco Rush: Extreme Racing USA"
+        "San Francisco Rush: Extreme Racing"
       else game_name
       end
       game_name
