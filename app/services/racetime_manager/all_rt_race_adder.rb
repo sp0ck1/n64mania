@@ -45,7 +45,7 @@ module RacetimeManager
           next
         end
       end
-      errors_array.sort.each { |game, message| puts "#{game}: #{message} }
+      errors_array.sort.each { |game, message| puts "#{game}: #{message}" }
     end
 
 
