@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_12_061044) do
+ActiveRecord::Schema.define(version: 2023_08_15_114501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2023_08_12_061044) do
   create_table "game_genres", id: false, force: :cascade do |t|
     t.bigint "game_id"
     t.bigint "genre_id"
+    t.index ["game_id", "genre_id"], name: "index_game_genres_on_game_id_and_genre_id"
     t.index ["game_id"], name: "index_game_genres_on_game_id"
     t.index ["genre_id"], name: "index_game_genres_on_genre_id"
   end
@@ -57,6 +58,8 @@ ActiveRecord::Schema.define(version: 2023_08_12_061044) do
     t.integer "player_id", limit: 2, null: false
     t.integer "placement", limit: 2, null: false
     t.integer "time"
+    t.index ["race_id", "placement"], name: "index_placements_on_race_id_and_placement"
+    t.index ["race_id", "player_id"], name: "index_placements_on_race_id_and_player_id"
   end
 
   create_table "players", id: :integer, limit: 2, default: -> { "nextval('player_id_seq'::regclass)" }, force: :cascade do |t|
@@ -71,6 +74,7 @@ ActiveRecord::Schema.define(version: 2023_08_12_061044) do
     t.string "description"
     t.string "goal"
     t.integer "duration"
+    t.index ["game_id"], name: "index_races_on_game_id"
   end
 
   create_table "terms", force: :cascade do |t|

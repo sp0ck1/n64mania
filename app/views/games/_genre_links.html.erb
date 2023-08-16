@@ -2,10 +2,7 @@
    <% s = game.genres.size%>
     <% game.genres.each_with_index do |genre, index| %>
     <span>
-    <%= link_to genre.name, genre_path(genre) -%>
-    <% unless s == index+1 %>
-    <p> | </p>
-     <% end %>
+    <%= link_to genre.name, genre_path(genre), class: "genre-bubble" -%>
     </span> 
     <% end %>
   </td>

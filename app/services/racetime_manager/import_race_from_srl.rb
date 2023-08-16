@@ -18,16 +18,8 @@ module RacetimeManager
       entrants_hash = data["entrants"]
       race_duration = get_duration_from_entrants(entrants_hash)
       begin
-
-      # Need to map all player names from SRL to plain_names or stream_names first
-      # https://www.speedrunslive.com/api/players/Pikapals to get via srl name
-      # Maybe just import everybody and if there are duplicates then merge them later
-      # merge(player_name_array, final_player_name) and that will take one of the two player_ids
-      # and update the other player names with that player id, and also check any other place
-      # there is a player_id in the db and replace the old id with the final_player_name's id
         
         race_date = Time.at(data["raceDate"]).to_date
-        
         
         # Handle race - get goal & duration, players & their time & their comment
         
