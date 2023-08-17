@@ -16,6 +16,7 @@ module RacetimeManager
 
     def call()
       begin
+      new_players = []
       race_start = @race_hash["started_at"].to_time
       race_end = @race_hash["ended_at"].to_time
       race_duration = race_end - race_start # Duration in seconds
@@ -62,6 +63,7 @@ module RacetimeManager
               new_player.stream = twitch_name
               new_player.save!
               player = new_player
+              new_players << [player.name]
             end
 
             # Handle comments
@@ -105,6 +107,7 @@ module RacetimeManager
       raise "Exception in race importer! Could not import #{@race_hash["url"]}"
     ensure
       puts "#{game_name} import complete"
+      puts "Mew players added: #{new_players}"
     end
     end # end def
 
