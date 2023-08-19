@@ -16,18 +16,18 @@ module RacetimeManager
 
     def call()
       begin
-      new_players = []
+      new_players = {}
       race_start = @race_hash["started_at"].to_time
       race_end = @race_hash["ended_at"].to_time
       race_duration = race_end - race_start # Duration in seconds
 
         game_name = validate_name(@race_hash["goal"]["name"])
-
+        new_players[game_name] = []
         game =  Game.where('name ILIKE ?', "%#{game_name}%").first # Being Proper probably means breaking this out into a method
         # binding.pry
       unless game.id.nil?
         unless Race.where(duration: race_duration,game_id: game.id).exists? # will only import races that do not already exist
-       
+          
           # Handle race
           game_id = game.id
           new_race_id = Race.last.id + 1
@@ -63,13 +63,10 @@ module RacetimeManager
               new_player.stream = twitch_name
               new_player.save!
               player = new_player
-              new_players << [player.name]
+              new_players[game.name] << player.name
             end
 
-            # Handle comments
-            player_id = Player.where(name: plain_name).first.id
-            
-            placement_int = entrant["place"].nil? ? 0 : entrant["place"] 
+            placement_int = entrant["place"].nil? ? 999 : entrant["place"] 
             if entrant["has_comment"]
               comment_text = entrant["comment"]
 
@@ -96,7 +93,7 @@ module RacetimeManager
           new_race.save!
           comments_arr.each { |comment| comment.save! }
           placements_arr.each { |placement| placement.save! }
-
+          puts "#{game_name} import complete"
         else puts "#{game_name} race of duration #{race_duration} already exists! Skipping ..."
           
         end
@@ -106,9 +103,11 @@ module RacetimeManager
       puts e.message
       raise "Exception in race importer! Could not import #{@race_hash["url"]}"
     ensure
-      puts "#{game_name} import complete"
-      puts "Mew players added: #{new_players}"
+      
+     
     end
+    
+    new_players
     end # end def
 
   private

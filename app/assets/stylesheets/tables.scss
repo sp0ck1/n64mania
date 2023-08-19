@@ -65,16 +65,3 @@ th {
 table p {
     display:inline;
 }
-
-.genre-bubble {
-    white-space:nowrap;
-    padding: 2px;
-    border: 0px;
-    background-color: #3d3d3d;
-    border-color:black;
-    border-radius: 10px;
-    &:hover {
-        background-color: #1b1b1b;
-        text-decoration: none;
-    }
-}

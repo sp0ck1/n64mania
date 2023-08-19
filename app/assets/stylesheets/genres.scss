@@ -1,3 +1,18 @@
 // Place all the styles related to the genres controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.genre-bubble {
+    white-space:nowrap;
+    padding: 2px;
+    border: 0px;
+    background-color: #3d3d3d;
+    border-color:black;
+    border-radius: 10px;
+    margin: 2px;
+    &:hover {
+        background-color: #1b1b1b;
+        text-decoration: none;
+    }
+}

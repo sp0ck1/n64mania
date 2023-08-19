@@ -4,11 +4,12 @@
   <th class="top-left">Game Name</th>
   <th>Race Date</th>
   <th>Participants</th>
+  <th>Duration</th>
   <th class="top-right">Winner</th>
 
   
  </tr>
- <% @races.each do |race| 
+ <% @races.sort_by(&:date).each do |race| 
   race_id = race.id
   date = race.date
   game_id = race.game_id
@@ -22,6 +23,7 @@
   <td><%= link_to game.name, race_path(race) %></td>
   <td><%= date %></td>
   <td><%= race.players.count %></th>
+  <td><%= Time.at(duration).utc.strftime("%H:%M:%S") unless duration.nil? %>
   <td><%= link_to race.winner.name, race.winner %></th>
  </tr>
  <% end %>

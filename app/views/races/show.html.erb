@@ -17,7 +17,7 @@
 <th>Comment</th>
 </tr>
 
-<% @race.placements.each do |p|%>
+<% @race.placements.sort_by(&:placement).each do |p|%>
     <tr>
         <td><%=link_to p.player.name, p.player%></td>
         <td><%= Time.at(p.time).utc.strftime("%H:%M:%S") %></td>

@@ -61,7 +61,7 @@ module RacetimeManager
           player = Player.where(stream: twitch_name).first
         
           # Create player if not exists 
-          # It's fine if this happens and then the script fails, because it will just get the player next time.
+          # It's fine if this happens and then the script fails, because it will just find the player next time.
           if player.nil?
             new_player = Player.new
             new_player.name = plain_name
@@ -86,7 +86,7 @@ module RacetimeManager
           # binding.pry
           # Duration in seconds. 
           # Common parlance refers to this as one's "time," but the length of the whole race is the duration for the purposes of the Race model.
-          placement.time = iso8601_to_seconds(entrant["finish_time"]) unless placement.placement == 0
+          placement.time = iso8601_to_seconds(entrant["finish_time"]) unless placement.placement == 999
           placements_arr << placement
         end
 

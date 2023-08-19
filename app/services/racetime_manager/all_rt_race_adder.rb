@@ -19,6 +19,7 @@ module RacetimeManager
 
       hash_array = []
       errors_hash = {}
+      new_players = []
       initial_result = Util::JsonToHash.call("https://racetime.gg/n64mania/races/data?show_entrants=1")
       num_pages = initial_result["num_pages"]
 
@@ -28,13 +29,14 @@ module RacetimeManager
         puts "Adding page number #{page_number}"
         result = Util::JsonToHash.call("https://racetime.gg/n64mania/races/data?show_entrants=1&page=#{page_number}")
         add_to_race_hash(result["races"], hash_array)
-      end
+      end # end do
       
       hash_array.each_with_index do |race_hash|
         begin
         puts "Adding #{race_hash["goal"]["name"]}"
-        RacetimeManager::ImportRace.call(race_hash)
-        
+        to_add = RacetimeManager::ImportRace.call(race_hash)
+        new_players << to_add unless to_add.first[1].empty?
+
         # If a name doesn't line up with something in the database, 
         # store it to be displayed at the end of the process
         rescue => e
@@ -43,10 +45,12 @@ module RacetimeManager
           puts "Could not import #{name}"
           errors_hash[name] = e.message
           next
-        end
-      end
+        end # end begin
+      end # end do
       errors_hash.sort.each { |game, message| puts "#{game}: #{message}" }
-    end
+      puts "New players: #{new_players}"
+      # TODO: Add new races output as well
+    end # end def
 
 
 
@@ -55,5 +59,5 @@ module RacetimeManager
     def add_to_race_hash(race_hash, races_array)
       race_hash.each { |race| races_array << race }
     end
-  end
-end
+  end # end class
+end # end module
