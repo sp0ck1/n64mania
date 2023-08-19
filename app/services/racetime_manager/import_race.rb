@@ -86,7 +86,7 @@ module RacetimeManager
             # binding.pry
             # Duration in seconds. 
             # Common parlance refers to this as one's "time," but the length of the whole race is the duration for the purposes of the Race model.
-            placement.time = iso8601_to_seconds(entrant["finish_time"]) unless placement.placement == 0
+            placement.time = iso8601_to_seconds(entrant["finish_time"]) unless placement.placement == 999
             placements_arr << placement
           end
 
@@ -112,6 +112,7 @@ module RacetimeManager
 
   private
 
+    # Accepts a value in the form of "P0DT03H37M04.727456S" and attempts to transform it into total seconds
     def iso8601_to_seconds(raw_duration)
       match = raw_duration.match(/P0DT(?:([0-9]*)H)*(?:([0-9]*)M)*(?:([0-9.]*)S)*/)
       hours   = match[1].to_i
