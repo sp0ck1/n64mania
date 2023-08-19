@@ -173,6 +173,8 @@ module RacetimeManager
         "San Francisco Rush: Extreme Racing"
       when "Madden '99"
         "Madden NFL 99"
+      when "Worms: Armageddon"
+        "Worms Armageddon"
       else game_name
       end
       game_name
