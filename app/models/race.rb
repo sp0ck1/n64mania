@@ -9,4 +9,10 @@ class Race < ActiveRecord::Base
     return Player.find(self.placements.find_by_placement(1).player_id)
   end
 
+  # Check if there is a race of this game with a date less than this race's date
+  def runback?
+    race_date = Race.arel_table[:date]
+    Race.where(game_id: self.game_id).where(race_date.lt(self.date)).exists?
+  end
+
 end

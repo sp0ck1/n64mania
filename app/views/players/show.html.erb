@@ -1,3 +1,16 @@
+<style>
+body {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='198' height='200' viewBox='-80 0 210 45' transform='rotate(-45)' fill='none' font-family='sans-serif' xmlns='http://www.w3.org/2000/svg'%3e%3ctext x='10' y='20' fill='RGB(241,253,119)'%3e <%= @player.name %> %3c/text%3e%3c/svg%3e ");
+    background-attachment: fixed;
+}
+
+.players-info, .races-table {
+    background-color:RGB(22,22,22);
+    
+}
+</style>
+
+
 <%= content_tag(:div, class: "players-info") do %>
 <%= content_tag(:div, class: "player-header-container") do %>
 <%= content_tag(:h1, @player.name, class: "player-header") %>
@@ -13,4 +26,3 @@
 <%= content_tag(:h1, "All Races") %>
 <%= render partial: "raced_table" %>
 <% end %>
-

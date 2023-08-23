@@ -20,7 +20,7 @@
   game = Game.find_by_id(race.game_id)
 %>
  <tr>
-  <td><%= link_to game.name, race_path(race) %></td>
+  <td><%= link_to "#{game.name} #{"(R)" if race.runback?}", race_path(race) %></td>
   <td><%= date %></td>
   <td><%= race.players.count %></th>
   <td><%= Time.at(duration).utc.strftime("%H:%M:%S") unless duration.nil? %>
