@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get 'unplayed/:genre',  to: 'races#search_by_genre' # rename/reroute this endpoint
   get 'games/unplayed', to: 'games#unplayed'
+  get 'games/grid', to: 'games#grid'
   post 'start_race', to: 'games#start_race'
 
   # Login/Logout endpoints
@@ -20,12 +21,12 @@ Rails.application.routes.draw do
   # JenniferHawk API call endpoints
   scope :api do
     get 'games/unplayed/random',   to: 'games#random_game_name'
-    get 'games/unplayed',   to: 'games#api_unplayed'
-    get 'games/played',     to: 'games#played'
-    get 'races/random',     to: 'races#random'
-    get 'games/random',     to: 'games#random'
-    get 'races/random/url', to: 'races#random_url'
-    get 'races/runback',    to: 'races#runback'
+    get 'games/unplayed',          to: 'games#api_unplayed'
+    get 'games/played',            to: 'games#played'
+    get 'races/random',            to: 'races#random'
+    get 'games/random',            to: 'games#random'
+    get 'races/random/url',        to: 'races#random_url'
+    get 'races/runback',           to: 'races#runback'
   end
 
   get 'portal', to: 'portal#index'
