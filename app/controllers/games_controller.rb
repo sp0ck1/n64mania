@@ -28,6 +28,11 @@ class GamesController < ApplicationController
     def unplayed
       @page_title = "All Unplayed Games | N64Mania"
     end
+
+    def grid
+      @page_title = "A grid of games for reference purposes"
+      render layout: false
+    end
     
     def api_unplayed # Include year in this json
         race_ids = []

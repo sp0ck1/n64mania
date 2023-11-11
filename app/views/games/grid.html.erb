@@ -1,0 +1,22 @@
+<style>
+.game-grid {
+    margin-right: 10px;
+    border-color: green;
+    border-radius: 4px;
+    border: solid;
+    padding: 5px;
+    text-align: center;
+    
+}
+</style>
+<div class="grid-thing" style="    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;">
+<% Game.all.each do |game| %>
+<%= content_tag :div, class: "game-grid" do %>
+<%= content_tag :p, game.name %>
+<%= content_tag :p, game.id %>
+<% end %>
+<% end %>
+</div>

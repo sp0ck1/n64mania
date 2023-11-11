@@ -27,6 +27,8 @@ gem "net-http"
 # For HTML meta tags
 gem "meta-tags"
 
+gem "ed25519", "< 2.0"
+gem "bcrypt_pbkdf", "< 2.0"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

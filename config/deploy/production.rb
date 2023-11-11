@@ -40,7 +40,7 @@ server '52.205.191.94', user: 'deploy', roles: %w{web app db}
 # Global options
 # --------------
   set :ssh_options, {
-    keys: %w(~/.ssh/id_rsa),
+    keys: %w(~/.ssh/id_rsa ~/.ssh/n64mania-key-pair.pem),
     forward_agent: false,
     auth_methods: %w(publickey password)
   }
