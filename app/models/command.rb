@@ -1,3 +1,3 @@
-class Command < ApplicationRecord
+class Command < ActiveRecord::Base
 
 end

@@ -42,13 +42,13 @@ class RacesController < ApplicationController
     def runback
       race = Race.all.sample
       winner_placement = Placement.where(race_id: race.id, placement: 1).first 
-      winner_name = Player.find(winner_placement.player_id).name
-
+      
       game_name = Game.find(race.game_id).name
+      winner_name = Player.find(winner_placement.player_id).name
       comment = race.comments.sample
-      commenter = Player.find_by_id(comment.player_id).name
       comment_text = comment.comment_text
-
+      commenter = Player.find_by_id(comment.player_id).name
+      
       runback = {
         :game      => game_name,
         :winner    => winner_name,

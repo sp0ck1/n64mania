@@ -23,10 +23,11 @@ Rails.application.routes.draw do
     get 'games/unplayed/random',   to: 'games#random_game_name'
     get 'games/unplayed',          to: 'games#api_unplayed'
     get 'games/played',            to: 'games#played'
-    get 'races/random',            to: 'races#random'
     get 'games/random',            to: 'games#random'
+    get 'races/random',            to: 'races#random'
     get 'races/random/url',        to: 'races#random_url'
     get 'races/runback',           to: 'races#runback'
+    get 'commands/:command',       to: 'commands#serve'
   end
 
   get 'portal', to: 'portal#index'
@@ -39,5 +40,6 @@ Rails.application.routes.draw do
 
   resources :users, except: [:new]
   resources :genres, except: [:edit, :new, :update]
+  resources :commands
   
 end
