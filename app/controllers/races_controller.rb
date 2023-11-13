@@ -3,7 +3,7 @@ class RacesController < ApplicationController
     def index
       @page_title = "All N64Mania Races | N64Mania"
       @page_description = "All N64Mania races, including runbacks."
-      @races = Race.all.sort_by { |race| race.date }
+     
     end
 
     def show

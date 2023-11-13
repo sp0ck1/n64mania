@@ -11,7 +11,9 @@
 
  <% 
 sql = <<-SQL 
-select races.id as rid, games.id as gid, games.name as "Game Name", races.date as "Race Date", (select count(*) from placements where race_id = races.id) as "Participants", races.duration as Duration, players.name as "Winner", players.id as "pid" 
+select races.id as rid, games.id as gid, games.name as "Game Name", races.date as "Race Date", 
+(select count(*) from placements where race_id = races.id) as "Participants", 
+races.duration as Duration, players.name as "Winner", players.id as "pid" 
 from races 
 join placements on races.id = placements.race_id 
 join games on games.id = races.game_id 
