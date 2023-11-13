@@ -7,24 +7,37 @@
   <th>Duration</th>
   <th class="top-right">Winner</th>
 
-  
  </tr>
- <% @races.sort_by(&:date).each do |race| 
-  race_id = race.id
-  date = race.date
-  game_id = race.game_id
-  url = race.url
-  description = race.description
-  goal = race.goal
-  duration = race.duration
-  game = Game.find_by_id(race.game_id)
+
+ <% 
+sql = <<-SQL 
+select races.id as rid, games.id as gid, games.name as "Game Name", races.date as "Race Date", (select count(*) from placements where race_id = races.id) as "Participants", races.duration as Duration, players.name as "Winner", players.id as "pid" 
+from races 
+join placements on races.id = placements.race_id 
+join games on games.id = races.game_id 
+join players on players.id = placements.player_id 
+where placements.placement = 1 order by date asc;
+SQL
+
+records_array = ActiveRecord::Base.connection.execute(sql)
+
+records_array.each do |record| 
+  race_id = record["rid"]
+  date = record["Race Date"]
+  game_id = record["gid"]
+  game_name = record["Game Name"]
+  participants = record["Participants"]
+  winner_name = record["Winner"]
+  winner_id = record["pid"]
+  duration = record["duration"]
+
 %>
  <tr>
-  <td><%= link_to "#{game.name} #{"(R)" if race.runback?}", race_path(race) %></td>
+  <td><%= link_to "#{game_name}", race_path(race_id) %></td> <!-- This shouldn't get looked up until you click --> <!-- #{"(R)" if race.runback?} old runback indicator needs rethought -->
   <td><%= date %></td>
-  <td><%= race.players.count %></th>
+  <td><%= participants %></th>
   <td><%= Time.at(duration).utc.strftime("%H:%M:%S") unless duration.nil? %>
-  <td><%= link_to race.winner.name, race.winner %></th>
+  <td><%= link_to winner_name, player_path(winner_id) %></th>
  </tr>
  <% end %>
 </table>
