@@ -25,5 +25,15 @@ class CommandsController < ApplicationController
     end
     render json: command
   end
+
+  def add
+    author = params[:author]
+    command_name = params[:command]
+    text = params[:text]
+ 
+    ActiveRecord::Base.transaction do
+      Command.new(author: author, command: command_name, text: text).save
+    end
+  end
   
 end

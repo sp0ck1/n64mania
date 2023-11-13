@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get 'races/random/url',        to: 'races#random_url'
     get 'races/runback',           to: 'races#runback'
     get 'commands/:command',       to: 'commands#serve'
+    post 'add_command',           to: 'commands#add'
   end
 
   get 'portal', to: 'portal#index'

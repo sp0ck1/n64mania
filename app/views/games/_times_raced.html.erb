@@ -8,6 +8,8 @@
   <th class="top-right">Winner</th>
 
  </tr>
+ <!-- If this query is being used for an individual game, insert this specifier: -->
+<% game_id_phrase = params["id"].nil? ? "" : "and races.game_id = #{params["id"]}"%>
 
  <% 
 sql = <<-SQL 
@@ -18,7 +20,8 @@ from races
 join placements on races.id = placements.race_id 
 join games on games.id = races.game_id 
 join players on players.id = placements.player_id 
-where placements.placement = 1 order by date asc;
+where placements.placement = 1 
+#{game_id_phrase} order by date asc;
 SQL
 
 records_array = ActiveRecord::Base.connection.execute(sql)
@@ -35,7 +38,7 @@ records_array.each do |record|
 
 %>
  <tr>
-  <td><%= link_to "#{game_name}", race_path(race_id) %></td> <!-- This shouldn't get looked up until you click --> <!-- #{"(R)" if race.runback?} old runback indicator needs rethought -->
+  <td><%= link_to "#{game_name}", race_path(race_id) %></td> <!-- #{"(R)" if race.runback?} old runback indicator needs rethought -->
   <td><%= date %></td>
   <td><%= participants %></th>
   <td><%= Time.at(duration).utc.strftime("%H:%M:%S") unless duration.nil? %>
