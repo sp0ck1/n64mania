@@ -15,12 +15,11 @@ class CommandsController < ApplicationController
       year = date.year
       date_s = "#{month} #{day}, #{year}"
 
-      # Different syntax for the same thing as in races_controller. Chose one (this is more like js)
       command = {
-        command: comm.command,
-        text: comm.text,
-        author: comm.author,
-        created: date_s
+        :command  =>  comm.command,
+        :text     =>  comm.text,
+        :author   =>  comm.author,
+        :created  =>  date_s
       }
     end
     render json: command
