@@ -176,6 +176,12 @@ module RacetimeManager
         "Madden NFL 99"
       when "Worms: Armageddon"
         "Worms Armageddon"
+      when "Ken Griffey Jr.'s Slugfest"
+        "Ken Griffey, Jr.'s Slugfest"
+      when "Shadow Man: Beat first boss?"
+        "Shadow Man"
+      when "Hybrid Heaven: Beat Area 2"
+        "Hybrid Heaven"
       else game_name
       end
       game_name
