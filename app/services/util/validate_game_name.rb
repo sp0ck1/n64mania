@@ -52,6 +52,14 @@ module Util
         "ClayFighter 63⅓"
       when "All Star Baseball '99"
         "All-Star Baseball 99"
+      when "Ken Griffey Jr.'s Slugfest"
+        "Ken Griffey, Jr.'s Slugfest"
+      when "Shadow Man: Beat first boss?"
+        "Shadow Man"
+      when "Hybrid Heaven: Beat Area 2"
+        "Hybrid Heaven"
+      when "Twisted Edge: Extreme Snowboarding"
+        "Twisted Edge Extreme Snowboarding"
       else game_name
       end
       game_name
