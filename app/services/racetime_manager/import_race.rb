@@ -182,6 +182,8 @@ module RacetimeManager
         "Shadow Man"
       when "Hybrid Heaven: Beat Area 2"
         "Hybrid Heaven"
+      when "Twisted Edge: Extreme Snowboarding"
+        "Twisted Edge Extreme Snowboarding"
       else game_name
       end
       game_name
