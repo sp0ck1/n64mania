@@ -17,7 +17,7 @@ module RacetimeManager
 
       # go through each race hash and import_race
 
-      hash_array = []
+      hash_array = [] # contains every race at n64mania/races/data on all pages
       errors_hash = {}
       new_players = []
       initial_result = Util::JsonToHash.call("https://racetime.gg/n64mania/races/data?show_entrants=1")
@@ -49,7 +49,7 @@ module RacetimeManager
       end # end do
       errors_hash.sort.each { |game, message| puts "#{game}: #{message}" }
       puts "New players: #{new_players}"
-      # TODO: Add new races output as well
+      # TODO: Add new races output before making API return live`
     end # end def
 
 

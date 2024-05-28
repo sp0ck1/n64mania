@@ -55,14 +55,16 @@ module Util
       when "Ken Griffey Jr.'s Slugfest"
         "Ken Griffey, Jr.'s Slugfest"
       when "Shadow Man: Beat first boss?"
-        "Shadow Man"
+        # "Shadow Man"
       when "Hybrid Heaven: Beat Area 2"
-        "Hybrid Heaven"
+        # "Hybrid Heaven"
       when "Twisted Edge: Extreme Snowboarding"
-        "Twisted Edge Extreme Snowboarding"
-      else game_name
+        # "Twisted Edge Extreme Snowboarding"
+      when "WWF Wrestlemanis 2000"
+        "WWF WrestleMania 2000"
+      else @game_name
       end
-      game_name
+      @game_name
     end
 
   end

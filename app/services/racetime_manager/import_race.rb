@@ -21,7 +21,7 @@ module RacetimeManager
       race_end = @race_hash["ended_at"].to_time
       race_duration = race_end - race_start # Duration in seconds
 
-        game_name = validate_name(@race_hash["goal"]["name"])
+        game_name = Util::ValidateGameName.call(@race_hash["goal"]["name"])
         new_players[game_name] = []
         game =  Game.where('name ILIKE ?', "%#{game_name}%").first # Being Proper probably means breaking this out into a method
         # binding.pry
@@ -100,14 +100,14 @@ module RacetimeManager
       end # end unless game.id.nil?
 
     rescue => e
-      puts e.message
-      raise "Exception in race importer! Could not import #{@race_hash["url"]}"
+      puts e.message # undefined method `id' for nil:NilClass, the original e.message
+      raise "Exception in race importer! Could not import #{@race_hash["url"]}" # The e.message the user sees
     ensure
       
      
     end
     
-    new_players
+    new_players # 
     end # end def
 
   private
