@@ -23,6 +23,7 @@
                 <%= render partial: "nav-link", locals: {href_path: "/races", title: "N64Mania Races"} %> 
                 <%= render partial: "nav-link", locals: {href_path: "/players", title: "Players"} %> 
                 <%= render partial: "nav-link", locals: {href_path: "/games/unplayed", title: "Unplayed Games"} %>
+                <%= render partial: "nav-link", locals: {href_path: "/genres", title: "Genres"} %>
                 
                 <% unless logged_in? %> <!-- If Logged Out -->
                 <%= form_tag('/auth/twitch', method: 'post', class: 'nav-links', id: 'twitch-login', data: {turbo: false}) do %>
