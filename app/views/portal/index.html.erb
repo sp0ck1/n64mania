@@ -1,10 +1,10 @@
 
 <%= content_tag(:p, "What type of record would you like to update?") -%>
 <%= select_tag "model-select", options_for_select([ "Game", "Race", "Player" ], "Game") %>
-<nav>
-<%= content_tag(:div, class:"nav-links") do %>
-<%= render partial: "nav-link", locals: {href_path: "/updategame", title: "Update Games"} %> 
-                <%= render partial: "nav-link", locals: {href_path: "/updaterace", title: "Update Races"} %> 
-                <%= render partial: "nav-link", locals: {href_path: "/updateplayer", title: "Update Players"} %> 
-                <% end %>
-                </nav>
+    <nav>
+    <%= content_tag(:div, class:"nav-links") do %>
+        <%= render partial: "nav-link", locals: {href_path: "/updategame", title: "Update Games"} %> 
+        <%= render partial: "nav-link", locals: {href_path: "/updaterace", title: "Update Races"} %> 
+        <%= render partial: "nav-link", locals: {href_path: "/updateplayer", title: "Update Players"} %> 
+        <% end %>
+    </nav>

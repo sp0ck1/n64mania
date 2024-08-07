@@ -1,14 +1,29 @@
-<table>
- <tr>
+<%
+last_url = request.original_url
+last_sort_order_start = last_url.index("sort_order=")
 
-  <th>Name</th>
-  <th>Number of Races</th>
-  <th>Last Race</th>
-  
-  
+if params[:sort_order]
+    last_sort_order = last_url[last_sort_order_start+11, last_url.length]
+else # Default to descending order
+  params[:sort_order] = "descending"
+end
+
+if last_sort_order == "ascending"
+  sort_order = "descending"
+  else 
+  sort_order = "ascending"
+end
+ %>
+
+ <table>
+<tr>
+  <th><%= link_to "Name", {:sort => "name", :sort_order => sort_order } %> </th> 
+  <th><%= link_to "Number of Races", { :sort => "num_races", :sort_order => sort_order } %> </th> 
+  <th><%= link_to "Last Race", { :sort => "last_race", :sort_order => sort_order } %> </th> 
  </tr> 
  
- <% @players.sort_by{|player| -player.races.size}.each_with_index do |player, index| %>
+ <tr>
+ <% @players.each_with_index do |player, index| %>
   <% begin %>
   <td><%= link_to player.name, player %></td>
   <td><p><%= player.races.size %></p> </td>
@@ -20,3 +35,4 @@
  </tr>
  <% end %>
 </table>
+
