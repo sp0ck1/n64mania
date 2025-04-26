@@ -17,12 +17,12 @@ class PlayersController < ApplicationController
         end
       when "descending"
         case params[:sort]
+          when "name"
+            @players = Player.all.sort_by { |player| player.name }.reverse
           when "num_races"
             @players = Player.all.sort_by { |player| player.races.size }.reverse
           when "last_race"
             @players = Player.all.sort_by { |player| player.races.order(:date).last.game.name }.reverse
-          when "name"
-            @players = Player.all.sort_by { |player| player.name }.reverse
           end
         else 
           @players = Player.all.sort_by { |player| player.races.size }.reverse

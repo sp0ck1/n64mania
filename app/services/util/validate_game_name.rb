@@ -62,6 +62,18 @@ module Util
         "Twisted Edge Extreme Snowboarding"
       when "WWF Wrestlemanis 2000"
         "WWF WrestleMania 2000"
+      when "Tom & Jerry in: Fists of Furry"
+        "Tom and Jerry in Fists of Furry"
+      when "Madden '99"
+        "Madden NFL 99"
+      when "San Francisco Rush: Extreme Racing USA"
+        "San Francisco Rush: Extreme Racing"
+      when "Worms: Armageddon"
+        "Worms Armageddon"
+      when "AeroFighters Assault"
+        "Aero Fighters Assault"
+      when "F1 World Grand Prix"
+        "F-1 World Grand Prix"
       else @game_name
       end
       @game_name
