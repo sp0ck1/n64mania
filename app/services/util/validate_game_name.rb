@@ -73,7 +73,9 @@ module Util
       when "AeroFighters Assault"
         "Aero Fighters Assault"
       when "F1 World Grand Prix"
+        puts "F1 game here!"
         "F-1 World Grand Prix"
+        @game_name = "F-1 World Grand Prix"
       else @game_name
       end
       @game_name
