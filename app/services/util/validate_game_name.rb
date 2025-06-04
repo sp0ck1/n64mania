@@ -76,6 +76,8 @@ module Util
         puts "F1 game here!"
         "F-1 World Grand Prix"
         @game_name = "F-1 World Grand Prix"
+      when "Beat the game"
+        "The N64Mania Easter Egg Special 2025"
       else @game_name
       end
       @game_name
