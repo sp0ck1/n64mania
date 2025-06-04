@@ -78,6 +78,8 @@ module Util
         @game_name = "F-1 World Grand Prix"
       when "Beat the game"
         "The N64Mania Easter Egg Special 2025"
+      when "Pokemon Snap"
+        "Pokémon Snap"
       else @game_name
       end
       @game_name
