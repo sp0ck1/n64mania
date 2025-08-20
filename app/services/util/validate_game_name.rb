@@ -80,6 +80,8 @@ module Util
         "The N64Mania Easter Egg Special 2025"
       when "Pokemon Snap"
         "Pokémon Snap"
+      when "NHL Breakaway 99"
+        "NHL Breakaway '99"
       else @game_name
       end
       @game_name
