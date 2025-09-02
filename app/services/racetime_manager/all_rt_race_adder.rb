@@ -25,12 +25,15 @@ module RacetimeManager
 
       add_to_race_hash(initial_result["races"], hash_array)
 
-      (2..num_pages).each_with_index do |page_number| 
-        puts "Adding page number #{page_number}"
-        result = Util::JsonToHash.call("https://racetime.gg/n64mania/races/data?show_entrants=1&page=#{page_number}")
-        add_to_race_hash(result["races"], hash_array)
-      end # end do
-      
+      # No reason to add every other page anymore. 
+      # initial_result contains the last 10 N64Mania races. This script just needs to be run 2-3 more times at minimum as of 9/2/2025.
+
+      # (2..num_pages).each_with_index do |page_number| 
+      #   puts "Adding page number #{page_number}"
+      #   result = Util::JsonToHash.call("https://racetime.gg/n64mania/races/data?show_entrants=1&page=#{page_number}")
+      #   add_to_race_hash(result["races"], hash_array)
+      # end # end do
+
       hash_array.each_with_index do |race_hash|
         begin
         puts "Adding #{race_hash["goal"]["name"]}"
