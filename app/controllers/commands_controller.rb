@@ -1,6 +1,6 @@
 class CommandsController < ApplicationController  
   protect_from_forgery with: :null_session
-  
+
   def index
   end
 
@@ -42,6 +42,7 @@ class CommandsController < ApplicationController
       else 
         Rails.logger.debug "Validation errors: #{command.errors.full_messages}"
         render plain: "Failed to save command", status: :unprocessable_entity
+      end
     end
   end
   
