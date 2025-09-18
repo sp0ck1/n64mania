@@ -26,12 +26,21 @@ class CommandsController < ApplicationController
   end
 
   def add
+
+    Rails.logger.debug "Received params: #{params.inspect}"
+
     author = params[:author]
     command_name = params[:command]
     text = params[:text]
  
     ActiveRecord::Base.transaction do
-      Command.new(author: author, command: command_name, text: text).save
+      command = Command.new(author: author, command: command_name, text: text)
+      
+      if command.save
+        render plain: "Command added!"
+      else 
+        Rails.logger.debug "Validation errors: #{command.errors.full_messages}"
+        render plain: "Failed to save command", status: :unprocessable_entity
     end
   end
   
