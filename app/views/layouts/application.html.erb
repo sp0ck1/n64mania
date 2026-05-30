@@ -12,7 +12,11 @@
 
     <body>
         <% # Set something to adjust the CSS on every page based on session[:darkmode?] %>
-        <div class="header-bar left"></div>
+        <div class="header-bar left">
+             <%= link_to "/" do %>
+    <%= image_tag "N64Shader6.png", class: "header-logo" %>
+  <% end %>
+        </div>
         <div class="header-bar right"></div>
              
         <div id="confined-body">
