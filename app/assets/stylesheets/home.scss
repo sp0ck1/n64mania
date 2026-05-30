@@ -15,7 +15,11 @@ body {
 
 .left {
     float:left;
+    img {
+        height:60px;
+    }
 }
+
 
 .right {
     float:right;
@@ -27,6 +31,8 @@ body {
     width:20vw;
     background-color: rgb(39,57,141);
 }
+
+
 
 #confined-body {
     
