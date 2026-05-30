@@ -25,17 +25,21 @@
                 <%= render partial: "nav-link", locals: {href_path: "/games/unplayed", title: "Unplayed Games"} %>
                 <%= render partial: "nav-link", locals: {href_path: "/genres", title: "Genres"} %>
                 
-                <% unless logged_in? %> <!-- If Logged Out -->
+
+               <!--
+               We don't need to login with Twitch. The functionality does not really work.
+
+                <% unless logged_in? %> <\!-- If Logged Out --\>
                 <%= form_tag('/auth/twitch', method: 'post', class: 'nav-links', id: 'twitch-login', data: {turbo: false}) do %>
                     <%= button_tag "Login with Twitch", class: "nav-links nav-link-box twitch-button" %>
                     <% end %>
-                <% else %> <!-- If Logged In -->
+                <% else %> <\!-- If Logged In --\>
                     <%= link_to logout_path, class: "nav-link", id: 'twitch-login', method: "delete" do %>
                         
                         <%= content_tag(:div, "Log Out", class: "nav-link-box") %>
                     <% end %>
                     
-                <% end %> 
+                <% end %> -->
                 
             </div><!-- nav-links -->
             </nav> 
@@ -54,7 +58,7 @@
         </div>
             <footer>
                 <% comm = Comment.all.sample %>
-                <p>N64Mania 2023. Alpha build. All content considered to be in flux. <%= link_to "#{comm.comment_text}", race_path(comm.race_id) %></p>
+                <p><%= link_to "#{comm.comment_text}", race_path(comm.race_id) %></p>
             </footer>
         
         <%= debug(params) if Rails.env.development? %>
